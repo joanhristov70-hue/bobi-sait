@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "bobi-group.com"
+        }
+      ],
+      "destination": "https://www.bobi-group.com/$1",
+      "permanent": true
+    }
+  ]
+}
