@@ -1,16 +1,68 @@
+/*
+ * Bobi Group – synchronous nav injector.
+ * Embeds nav HTML directly so main.js can find #themeBtn, #hdr, #hambBtn,
+ * #mobNav, #mobClose immediately when it runs.
+ * Both nav-loader.js and main.js use defer, so this runs first (document order).
+ */
 (function () {
-  function loadNav() {
+  var NAV_HTML = [
+    '<header class="header" id="hdr">',
+    '<div class="hdr-inner">',
+    '<a href="/" class="logo" aria-label="Bobi Group Sofia">',
+    '<div class="logo-img-wrap"><img fetchpriority="high" src="/bobi-01.png" alt="Bobi Group Logo" class="logo-img"></div>',
+    '<span class="logo-name">BOBI <em>GROUP</em></span>',
+    '</a>',
+    '<nav class="nav" aria-label="Основна навигация">',
+    '<div class="nav-dropdown" style="position:relative;display:inline-block;">',
+    '  <a href="/uslugi/" style="display:flex;align-items:center;gap:4px;">',
+    '    Услуги',
+    '    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>',
+    '  </a>',
+    '  <div class="nav-dropdown-menu" style="display:none;position:absolute;top:100%;left:0;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);min-width:220px;padding:8px;z-index:300;box-shadow:var(--shadow);">',
+    '    <a href="/uslugi/kartene.html" style="display:block;padding:10px 14px;border-radius:8px;color:var(--txt2);font-size:.86rem;font-weight:600;text-decoration:none;">Къртене и демонтаж</a>',
+    '    <a href="/uslugi/pochistvane.html" style="display:block;padding:10px 14px;border-radius:8px;color:var(--txt2);font-size:.86rem;font-weight:600;text-decoration:none;">Почистване</a>',
+    '    <a href="/uslugi/izvozane.html" style="display:block;padding:10px 14px;border-radius:8px;color:var(--txt2);font-size:.86rem;font-weight:600;text-decoration:none;">Хамалски услуги и извозване</a>',
+    '  </div>',
+    '</div>',
+    '<a href="/#process">Как работим</a>',
+    '<a href="/galeriya.html">Галерия</a>',
+    '<a href="/#zones">Покритие</a>',
+    '<a href="/#reviews">Отзиви</a>',
+    '<a href="/#faq">FAQ</a>',
+    '</nav>',
+    '<div class="hdr-actions">',
+    '<button class="btn-theme" id="themeBtn" aria-label="Смени тема">',
+    '<svg class="sun-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    '<svg class="moon-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    '</button>',
+    '<a href="/#contact" class="btn-mag" style="padding:10px 22px;font-size:.83rem;">',
+    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+    '        Запитване',
+    '      </a>',
+    '<button class="hamburger" id="hambBtn" aria-label="Меню">',
+    '<span></span><span></span><span></span>',
+    '</button>',
+    '</div>',
+    '</div>',
+    '</header>',
+    '<div class="mob-nav" id="mobNav">',
+    '<button class="mob-close" id="mobClose">✕</button>',
+    '<a href="/uslugi/">Услуги</a>',
+    '<a href="/#process" onclick="closeMob()">Как работим</a>',
+    '<a href="/galeriya.html" onclick="closeMob()">Галерия</a>',
+    '<a href="/#zones" onclick="closeMob()">Покритие</a>',
+    '<a href="/#reviews" onclick="closeMob()">Отзиви</a>',
+    '<a href="/#faq" onclick="closeMob()">FAQ</a>',
+    '<a href="/#contact" class="btn-mag" onclick="closeMob()">Безплатна Оферта</a>',
+    '</div>'
+  ].join('\n');
+
+  function inject() {
     var placeholder = document.getElementById('nav-placeholder');
     if (!placeholder) return;
-
-    fetch('/components/nav')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        placeholder.innerHTML = html;
-        setActiveLink();
-        initMobileNav();
-      })
-      .catch(function (e) { console.warn('Nav load failed', e); });
+    placeholder.outerHTML = NAV_HTML;
+    setActiveLink();
+    initDropdown();
   }
 
   function setActiveLink() {
@@ -19,29 +71,14 @@
     links.forEach(function (a) {
       a.classList.remove('nav-active');
       var href = a.getAttribute('href');
-      if (href && href !== '#' && path.endsWith(href.replace(/^\//, ''))) {
-        a.classList.add('nav-active');
+      if (href && href !== '/' && href.charAt(0) !== '#') {
+        var cleaned = href.replace(/^\//, '');
+        if (cleaned && path.endsWith(cleaned)) a.classList.add('nav-active');
       }
     });
   }
 
-  function initMobileNav() {
-    var hambBtn = document.getElementById('hambBtn');
-    var mobNav = document.getElementById('mobNav');
-    var mobClose = document.getElementById('mobClose');
-
-    if (hambBtn && mobNav) {
-      hambBtn.addEventListener('click', function () {
-        mobNav.classList.toggle('open');
-      });
-    }
-    if (mobClose && mobNav) {
-      mobClose.addEventListener('click', function () {
-        mobNav.classList.remove('open');
-      });
-    }
-
-    // Dropdown hover
+  function initDropdown() {
     var dropdown = document.querySelector('.nav-dropdown');
     var menu = document.querySelector('.nav-dropdown-menu');
     if (dropdown && menu) {
@@ -50,9 +87,6 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadNav);
-  } else {
-    loadNav();
-  }
+  // Run synchronously now — defer order guarantees main.js sees the nav DOM.
+  inject();
 })();
