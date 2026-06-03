@@ -5,7 +5,7 @@ function closeModal(id){document.getElementById(id).classList.remove('open');doc
 function closeModalOuter(e,id){if(e.target===document.getElementById(id))closeModal(id)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));closeLb();document.body.style.overflow='';}});document.querySelectorAll('.svc-card').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')c.click()});});const galleryMap=[["bobi-16.jpeg","Преместване • София"],["bobi-04.jpeg","Почистване след ремонт"],["bobi-22.jpeg","Извозване на отпадъци"],["bobi-05.jpeg","Извозване строителни отпадъци"],["bobi-10.jpeg","Къртене на апартамент"],["bobi-12.jpeg","Демонтаж на баня"],["bobi-28.jpeg","Хамалски услуги • София"]];function openLightbox(i){const[src,cap]=galleryMap[i]||['',''];openLbImg(src,cap);}
 function openLbImg(src,cap){const lb=document.getElementById('lightbox');const wrap=document.getElementById('lbImgWrap');wrap.innerHTML='';const img=document.createElement('img');img.alt=cap||'';img.style.cssText='max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 24px 80px rgba(0,0,0,.8);display:block;';img.src=src;wrap.appendChild(img);document.getElementById('lbCaption').textContent=cap||'';lb.classList.add('open');document.body.style.overflow='hidden';}
-function closeLb(){const lb=document.getElementById('lightbox');lb.classList.remove('open');document.body.style.overflow='';setTimeout(()=>document.getElementById('lbImgWrap').innerHTML='',300);}
+function closeLb(){const lb=document.getElementById('lightbox');if(!lb)return;lb.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{const w=document.getElementById('lbImgWrap');if(w)w.innerHTML='';},300);}
 function closeLbOuter(e){if(e.target===document.getElementById('lightbox'))closeLb()}
 const baWrap=document.getElementById('baWrap');const baAfter=document.getElementById('baAfter');const baDivider=document.getElementById('baDivider');const baHandle=document.getElementById('baHandle');let baDragging=false;function setBA(pct){pct=Math.max(5,Math.min(95,pct));baAfter.style.clipPath='inset(0 0 0 '+pct+'%)';baDivider.style.left=pct+'%';baHandle.style.left=pct+'%';}
 function getBA(e){const r=baWrap.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;return(x/r.width)*100;}
@@ -61,6 +61,7 @@ var DISTRICTS=[
 var gmap, gInfoWindow, activeDistrictPoly=null, districtPolygons=[];
 
 function initMap(){
+  if(!document.getElementById('gmap')) return;
   // Standard Google Maps style (normal map, not dark)
   var lightStyle=[
     {featureType:'poi',stylers:[{visibility:'off'}]},
