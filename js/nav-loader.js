@@ -3,7 +3,7 @@
     var placeholder = document.getElementById('nav-placeholder');
     if (!placeholder) return;
 
-    fetch('/components/nav.html')
+    fetch('/components/nav')
       .then(function (r) { return r.text(); })
       .then(function (html) {
         placeholder.innerHTML = html;
