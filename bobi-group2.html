@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="bg" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bobi Group Sofia | Кърти • Чисти • Извозва</title>
+<meta name="description" content="Bobi Group Sofia – Професионално разрушаване, почистване и извозване. Бързина и доверие на достъпни цени в София и региона.">
+<meta name="keywords" content="кърти чисти извозва, демонтаж София, почистване след ремонт, извозване на строителни отпадъци, Боби Груп">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --blue: #0066FF;
+  --blue-glow: #3388FF;
+  --blue-deep: #0044CC;
+  --blue-soft: #E8F0FE;
+  --accent: #00D4FF;
+  --success: #00C48C;
+  --warning: #FFB800;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --header-h: 72px;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.6);
+  --bg-glass: rgba(17, 24, 39, 0.55);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --hero-gradient: linear-gradient(135deg, #0A0E1A 0%, #0D1B3E 50%, #0A0E1A 100%);
+  --glow-spread: 0 0 60px rgba(0, 102, 255, 0.15);
+}
+
+[data-theme="light"] {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --border-glass: rgba(0, 0, 0, 0.06);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --hero-gradient: linear-gradient(135deg, #F0F4FF 0%, #E0EAFF 50%, #F0F4FF 100%);
+  --glow-spread: 0 0 60px rgba(0, 102, 255, 0.08);
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.65;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,102,255,0.4), 0 0 60px rgba(0,102,255,0.15); }
+  50%      { box-shadow: 0 0 30px rgba(0,102,255,0.6), 0 0 80px rgba(0,102,255,0.25); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; }
+}
+
+/* ===== HEADER / NAVBAR ===== */
+.header {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-glass);
+  transition: background var(--transition), border var(--transition);
+}
+.header.scrolled {
+  background: var(--bg-glass);
+  box-shadow: var(--shadow-glass), var(--glow-spread);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--blue);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-icon svg { width: 22px; height: 22px; }
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+}
+.logo-text span { color: var(--blue); }
+
+.nav { display: flex; align-items: center; gap: 8px; }
+.nav a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: color var(--transition), background var(--transition);
+  cursor: pointer;
+}
+.nav a:hover, .nav a:focus-visible {
+  color: var(--blue);
+  background: rgba(0, 102, 255, 0.08);
+}
+.nav a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* Theme Toggle */
+.theme-toggle {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  background: var(--bg-card);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition), border var(--transition);
+  color: var(--text-secondary);
+  margin-left: 4px;
+}
+.theme-toggle:hover { border-color: var(--blue); color: var(--blue); }
+.theme-toggle svg { width: 20px; height: 20px; }
+
+/* CTA Button */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition), transform 0.15s ease, box-shadow var(--transition);
+  white-space: nowrap;
+}
+.btn-cta:hover {
+  background: var(--blue-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 102, 255, 0.35);
+}
+.btn-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn-cta.glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--blue);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--blue);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), transform 0.15s ease;
+}
+.btn-outline:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  width: 44px; height: 44px;
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  background: var(--bg-card);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.hamburger span {
+  width: 20px; height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99;
+  background: var(--bg-primary);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 12px 24px;
+}
+.mobile-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 44px; height: 44px;
+  background: none;
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .hamburger { display: flex; }
+  .header-inner .btn-cta { display: none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: var(--hero-gradient);
+  overflow: hidden;
+  padding-top: calc(var(--header-h) + 40px);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,102,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0,102,255,0.12);
+  border: 1px solid rgba(0,102,255,0.2);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blue-glow);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse-glow 2s ease infinite;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.hero h1 .highlight {
+  color: var(--blue);
+  position: relative;
+}
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+.hero-stat h3 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--blue);
+  letter-spacing: 2px;
+}
+.hero-stat p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s ease 0.4s both;
+}
+.hero-card {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4/3;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-glass);
+}
+.hero-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+}
+.hero-card-overlay p {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.hero-floating-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: var(--blue);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 0 8px 24px rgba(0,102,255,0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { margin-top: 40px; }
+  .hero-floating-badge { top: -8px; right: 8px; }
+}
+
+/* ===== SECTION SHARED ===== */
+section { padding: 100px 0; }
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.service-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border var(--transition);
+  cursor: pointer;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glass), 0 0 40px rgba(0,102,255,0.1);
+  border-color: rgba(0,102,255,0.2);
+}
+.service-card:focus-within { outline: 2px solid var(--blue); outline-offset: 2px; }
+.service-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+.service-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.service-card:hover .service-img img { transform: scale(1.08); }
+.service-img-overlay {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--blue);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.service-body { padding: 28px; }
+.service-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.service-body p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.service-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.service-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.service-features li svg {
+  width: 18px; height: 18px;
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+}
+
+/* ===== TRUST BAR ===== */
+.trust-bar {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+}
+.trust-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.trust-item svg { width: 24px; height: 24px; color: var(--blue); }
+
+/* ===== REVIEWS ===== */
+.reviews { position: relative; overflow: hidden; }
+.reviews-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+.reviews-controls { display: flex; gap: 8px; }
+.review-btn {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-card);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: background var(--transition), border var(--transition), color var(--transition);
+}
+.review-btn:hover { border-color: var(--blue); color: var(--blue); }
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+  transition: transform 0.5s ease;
+}
+.review-card {
+  min-width: calc(33.333% - 16px);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  padding: 32px;
+  flex-shrink: 0;
+  transition: border var(--transition);
+}
+.review-card:hover { border-color: rgba(0,102,255,0.2); }
+.review-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.review-stars svg { width: 18px; height: 18px; color: var(--warning); fill: var(--warning); }
+.review-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+.review-author-info h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.review-author-info p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .review-card { min-width: calc(100% - 16px); }
+}
+
+/* ===== FORM / LEAD GEN ===== */
+.form-section {
+  background: var(--hero-gradient);
+  position: relative;
+}
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(0,102,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.form-content {}
+.form-promises {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+.form-promises li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.form-promises li .icon-circle {
+  width: 36px; height: 36px;
+  background: rgba(0,102,255,0.12);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.form-promises li svg { width: 18px; height: 18px; color: var(--blue); }
+
+.form-box {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow-glass);
+}
+.form-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.form-box .form-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  transition: border var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-muted); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,102,255,0.12);
+}
+.form-group select { cursor: pointer; appearance: none; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+}
+.form-footer-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  max-width: 760px;
+  margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border var(--transition);
+}
+.faq-item.active { border-color: rgba(0,102,255,0.2); }
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  gap: 16px;
+}
+.faq-question:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+.faq-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(0,102,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition), background var(--transition);
+}
+.faq-item.active .faq-icon { transform: rotate(45deg); background: var(--blue); }
+.faq-icon svg { width: 14px; height: 14px; color: var(--blue); }
+.faq-item.active .faq-icon svg { color: #fff; }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 0 24px 24px;
+}
+.faq-answer p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 60px 0 32px;
+  border-top: 1px solid var(--border-glass);
+  background: var(--bg-secondary);
+  transition: background var(--transition);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+  line-height: 1.7;
+  max-width: 300px;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 4px 0;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.footer-col a:hover { color: var(--blue); }
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-glass);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-bottom p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== BACKGROUND GRID ===== */
+.bg-grid {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(var(--text-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--text-primary) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+</style>
+</head>
+<body>
+<!-- Background grid pattern -->
+<div class="bg-grid" aria-hidden="true"></div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo" aria-label="Bobi Group Sofia начало">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="3.3 7 12 12 20.7 7"/>
+          <line x1="12" y1="22" x2="12" y2="12"/>
+        </svg>
+      </div>
+      <div class="logo-text">BOBI <span>GROUP</span></div>
+    </a>
+    <nav class="nav" aria-label="Основна навигация">
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзиви</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Превключи тъмен/светъл режим">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="#contact" class="btn-cta" style="font-size:0.82rem;padding:10px 22px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Запитване
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Отвори меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="Затвори меню">&times;</button>
+  <a href="#services" onclick="closeMobileNav()">Услуги</a>
+  <a href="#reviews" onclick="closeMobileNav()">Отзиви</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#contact" onclick="closeMobileNav()">Контакт</a>
+  <a href="#contact" class="btn-cta" onclick="closeMobileNav()">Запитване</a>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> Работим 7 дни в седмицата</div>
+        <h1>КЪРТИ. ЧИСТИ.<br><span class="highlight">ИЗВОЗВА.</span></h1>
+        <p class="hero-sub">Професионално разрушаване, почистване и извозване в София и региона. Бързина, доверие и гаранция за качество от <strong>Bobi Group</strong>.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-cta glow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Безплатна Оферта
+          </a>
+          <a href="#services" class="btn-outline">
+            Вижте Услугите
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h3>500+</h3>
+            <p>Проекта</p>
+          </div>
+          <div class="hero-stat">
+            <h3>10+</h3>
+            <p>Години опит</p>
+          </div>
+          <div class="hero-stat">
+            <h3>24ч</h3>
+            <p>Отговор</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <!-- Placeholder with styled gradient -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg, #1a2a4a 0%, #0d1b3e 40%, #1e3a5f 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(0,102,255,0.4)" stroke-width="1"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+            <span style="color:rgba(255,255,255,0.3);font-size:0.8rem;font-weight:600;letter-spacing:2px;">BOBI GROUP SOFIA</span>
+          </div>
+          <div class="hero-card-overlay">
+            <p>Професионален демонтаж в София</p>
+          </div>
+        </div>
+        <div class="hero-floating-badge">Безплатен оглед</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRUST BAR ==================== -->
+<div class="trust-bar reveal">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Лицензирана дейност
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Експресно изпълнение
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Опитен екип
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Собствен транспорт
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SERVICES ==================== -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Какво правим</div>
+      <h2 class="section-title">НАШИТЕ УСЛУГИ</h2>
+      <p class="section-desc">Комплексни решения за демонтаж, почистване и извозване — от жилищни апартаменти до търговски обекти.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Service 1: Demolition -->
+      <div class="service-card reveal" tabindex="0">
+        <div class="service-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2744,#0d1b3e);display:flex;align-items:center;justify-content:center;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,102,255,0.5)" stroke-width="1.2" stroke-linecap="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><line x1="22" y1="8.5" x2="12" y2="15.5"/><line x1="2" y1="8.5" x2="12" y2="15.5"/></svg>
+          </div>
+          <div class="service-img-overlay">Демонтаж</div>
+        </div>
+        <div class="service-body">
+          <h3>КЪРТЕНЕ & ДЕМОНТАЖ</h3>
+          <p>Бързо и безопасно разрушаване на стени, подове, тавани и цели конструкции с професионално оборудване.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Къртене на бетон и зидария</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Демонтаж на стари инсталации</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Безопасно премахване на конструкции</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 2: Cleaning -->
+      <div class="service-card reveal" tabindex="0">
+        <div class="service-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#142233,#0b1a2e);display:flex;align-items:center;justify-content:center;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,0.5)" stroke-width="1.2" stroke-linecap="round"><path d="M3 22v-2l4-4h2l1-1 5 5-1 1v2"/><path d="M15 5.5A3.5 3.5 0 1 1 18.5 2L12 12l-1 1"/><path d="M10 15l-5 5"/></svg>
+          </div>
+          <div class="service-img-overlay">Почистване</div>
+        </div>
+        <div class="service-body">
+          <h3>ПОЧИСТВАНЕ</h3>
+          <p>Цялостно почистване след ремонт, след наематели или преди нанасяне — до блясък, с внимание към детайла.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Почистване след строителство</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Основно почистване на имоти</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Почистване на мазета и тавани</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 3: Moving / Hauling -->
+      <div class="service-card reveal" tabindex="0">
+        <div class="service-img">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2040,#0e1530);display:flex;align-items:center;justify-content:center;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,140,0.5)" stroke-width="1.2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="service-img-overlay">Извозване</div>
+        </div>
+        <div class="service-body">
+          <h3>ИЗВОЗВАНЕ</h3>
+          <p>Транспортиране и депониране на строителни отпадъци, стара мебел и всичко ненужно — бързо и отговорно.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Извозване на строителни отпадъци</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Изхвърляне на стара мебел</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Легално депониране</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REVIEWS ==================== -->
+<section id="reviews" class="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <div class="section-label">Доверие</div>
+        <h2 class="section-title">КАКВО КАЗВАТ КЛИЕНТИТЕ</h2>
+        <p class="section-desc">Стотици доволни клиенти в София и региона.</p>
+      </div>
+      <div class="reviews-controls">
+        <button class="review-btn" id="prevReview" aria-label="Предишен отзив">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="review-btn" id="nextReview" aria-label="Следващ отзив">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div style="overflow:hidden;">
+      <div class="reviews-track" id="reviewsTrack">
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-text">"Екипът дойде навреме, свърши всичко за ден и половина и почистиха след себе си. Абсолютно професионална работа!"</p>
+          <div class="review-author">
+            <div class="review-avatar">ИП</div>
+            <div class="review-author-info">
+              <h4>Иван Петров</h4>
+              <p>Ремонт на апартамент, Люлин</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-text">"Имах нужда от спешно извозване на строителни отпадъци. Обадих се и още същия ден камионът беше пред входа. Супер обслужване!"</p>
+          <div class="review-author">
+            <div class="review-avatar">МД</div>
+            <div class="review-author-info">
+              <h4>Мария Димитрова</h4>
+              <p>Извозване, Студентски Град</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-text">"Разчистиха целия ми мазе за няколко часа. Чисто, подредено и на добра цена. Препоръчвам ги горещо на всеки!"</p>
+          <div class="review-author">
+            <div class="review-avatar">ГС</div>
+            <div class="review-author-info">
+              <h4>Георги Стоянов</h4>
+              <p>Почистване на мазе, Надежда</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-text">"За ремонта на офиса ни бяха незаменими — скъртиха стари стени, изнесоха всичко и ни оставиха чисто пространство. Отлична работа."</p>
+          <div class="review-author">
+            <div class="review-avatar">ЕК</div>
+            <div class="review-author-info">
+              <h4>Елена Костова</h4>
+              <p>Офис ремонт, Лозенец</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-text">"Коректни, точни и работливи момчета. Вдигнаха 3 тона отпадъци от двора. Идват пак при нужда, без съмнение!"</p>
+          <div class="review-author">
+            <div class="review-avatar">НТ</div>
+            <div class="review-author-info">
+              <h4>Николай Тодоров</h4>
+              <p>Почистване на двор, Драгалевци</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LEAD GEN FORM ==================== -->
+<section id="contact" class="form-section">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-content reveal">
+        <div class="section-label">Свържете се</div>
+        <h2 class="section-title">ВЗЕМЕТЕ БЕЗПЛАТНА ОФЕРТА</h2>
+        <p class="section-desc">Попълнете формата и ще се свържем с вас до 24 часа с персонална оферта — безплатно и без ангажимент.</p>
+        <ul class="form-promises">
+          <li>
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Безплатен оглед на обекта
+          </li>
+          <li>
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            Отговор до 24 часа
+          </li>
+          <li>
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            Гарантирано качество
+          </li>
+          <li>
+            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            Конкурентни цени без скрити такси
+          </li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="form-box">
+          <h3>БЕЗПЛАТНА ОФЕРТА</h3>
+          <p class="form-sub">Попълнете данните и ние ще ви потърсим</p>
+          <div class="form-group">
+            <label for="fname">Вашето Име</label>
+            <input type="text" id="fname" name="fname" placeholder="Иван Иванов" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="fphone">Телефон</label>
+            <input type="tel" id="fphone" name="fphone" placeholder="+359 8XX XXX XXX" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="fservice">Вид Услуга</label>
+            <select id="fservice" name="fservice" required>
+              <option value="" disabled selected>Изберете услуга</option>
+              <option value="demolition">Къртене & Демонтаж</option>
+              <option value="cleaning">Почистване</option>
+              <option value="hauling">Извозване</option>
+              <option value="complex">Комплексна услуга</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmessage">Допълнителна информация <span style="font-weight:400;text-transform:none;letter-spacing:0">(по желание)</span></label>
+            <textarea id="fmessage" name="fmessage" placeholder="Опишете накратко какво имате нужда..."></textarea>
+          </div>
+          <button type="button" class="btn-cta form-submit glow" onclick="handleFormSubmit()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Изпрати Запитване
+          </button>
+          <p class="form-footer-note">Вашите данни са защитени и няма да бъдат споделяни.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label" style="justify-content:center;">Въпроси</div>
+      <h2 class="section-title">ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</h2>
+      <p class="section-desc" style="margin:0 auto;">Отговори на най-честите въпроси от нашите клиенти.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Колко струва услугата?
+          <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Цената зависи от обема на работата, типа услуга и достъпността на обекта. Предлагаме безплатен оглед и точна оферта без скрити такси. Свържете се с нас за персонална оценка.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Колко бързо можете да започнете?
+          <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>При спешни случаи можем да реагираме още в рамките на деня. За планирани проекти обикновено започваме в рамките на 2-3 работни дни след договаряне.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Работите ли в почивни дни?
+          <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Да, работим 7 дни в седмицата, включително събота и неделя. Разбираме, че ремонтите нямат почивен ден.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Извозвате ли строителните отпадъци?
+          <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Да, предлагаме пълна комплексна услуга — от къртенето през почистването до извозването и легалното депониране на всички отпадъци.</p></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Покривате ли цяла София?
+          <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </button>
+        <div class="faq-answer"><p>Да, обслужваме цяла София и близкия регион. За обекти извън града, моля свържете се с нас за уточняване на условията.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="Bobi Group Sofia начало">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+          </div>
+          <div class="logo-text">BOBI <span>GROUP</span></div>
+        </a>
+        <p>Професионално разрушаване, почистване и извозване в София. Вашият надежден партньор за всеки проект.</p>
+      </div>
+      <div class="footer-col">
+        <h4>УСЛУГИ</h4>
+        <a href="#services">Къртене</a>
+        <a href="#services">Почистване</a>
+        <a href="#services">Извозване</a>
+        <a href="#contact">Безплатна оферта</a>
+      </div>
+      <div class="footer-col">
+        <h4>КОМПАНИЯ</h4>
+        <a href="#hero">За нас</a>
+        <a href="#reviews">Отзиви</a>
+        <a href="#faq">Въпроси</a>
+      </div>
+      <div class="footer-col">
+        <h4>КОНТАКТ</h4>
+        <a href="tel:+359888000000">+359 888 000 000</a>
+        <a href="mailto:info@bobigroup.bg">info@bobigroup.bg</a>
+        <a>София, България</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Bobi Group Sofia. Всички права запазени.</p>
+      <p>Създадено с грижа за качеството.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== Theme Toggle =====
+const html = document.documentElement;
+const toggle = document.getElementById('themeToggle');
+const iconSun = toggle.querySelector('.icon-sun');
+const iconMoon = toggle.querySelector('.icon-moon');
+
+function setTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  if (theme === 'dark') {
+    iconSun.style.display = 'block';
+    iconMoon.style.display = 'none';
+  } else {
+    iconSun.style.display = 'none';
+    iconMoon.style.display = 'block';
+  }
+  localStorage.setItem('bobi-theme', theme);
+}
+
+toggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// Load saved theme
+const saved = localStorage.getItem('bobi-theme');
+if (saved) setTheme(saved);
+
+// ===== Sticky Header =====
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ===== Mobile Nav =====
+const hamburger = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+const mobileClose = document.getElementById('mobileClose');
+
+hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+// ===== Scroll Reveal =====
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// ===== Reviews Slider =====
+const track = document.getElementById('reviewsTrack');
+const prevBtn = document.getElementById('prevReview');
+const nextBtn = document.getElementById('nextReview');
+let reviewIndex = 0;
+const cards = track.querySelectorAll('.review-card');
+
+function getVisibleCount() {
+  if (window.innerWidth <= 900) return 1;
+  return 3;
+}
+
+function slideReviews() {
+  const visible = getVisibleCount();
+  const maxIndex = Math.max(0, cards.length - visible);
+  if (reviewIndex > maxIndex) reviewIndex = maxIndex;
+  if (reviewIndex < 0) reviewIndex = 0;
+  const card = cards[0];
+  const gap = 24;
+  const cardW = card.offsetWidth + gap;
+  track.style.transform = `translateX(-${reviewIndex * cardW}px)`;
+}
+
+prevBtn.addEventListener('click', () => { reviewIndex--; slideReviews(); });
+nextBtn.addEventListener('click', () => { reviewIndex++; slideReviews(); });
+window.addEventListener('resize', slideReviews);
+
+// ===== FAQ Accordion =====
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isActive = item.classList.contains('active');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    // Toggle clicked
+    if (!isActive) {
+      item.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// ===== Form Submit =====
+function handleFormSubmit() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const service = document.getElementById('fservice').value;
+
+  if (!name || !phone || !service) {
+    alert('Моля, попълнете всички задължителни полета.');
+    return;
+  }
+
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Изпращане...';
+  btn.style.opacity = '0.7';
+  btn.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Запитването е изпратено!`;
+    btn.style.background = '#00C48C';
+    btn.style.opacity = '1';
+    btn.style.animation = 'none';
+    btn.style.boxShadow = '0 0 20px rgba(0,196,140,0.4)';
+  }, 1200);
+}
+</script>
+</body>
+</html>

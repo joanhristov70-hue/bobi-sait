@@ -1,0 +1,3613 @@
+<!DOCTYPE html>
+<html lang="bg" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobi Group Sofia | Кърти • Чисти • Извозва</title>
+    <meta name="description"
+        content="Bobi Group Sofia – Професионално разрушаване, почистване и извозване. Бързина и доверие на достъпни цени в София и региона.">
+    <meta name="keywords"
+        content="кърти чисти извозва, демонтаж София, почистване след ремонт, извозване на строителни отпадъци, Боби Груп">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --blue: #0066FF;
+            --blue-glow: #3388FF;
+            --blue-deep: #0044CC;
+            --blue-soft: #E8F0FE;
+            --accent: #00D4FF;
+            --success: #00C48C;
+            --warning: #FFB800;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-h: 72px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0A0E1A;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.6);
+            --bg-glass: rgba(17, 24, 39, 0.55);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --hero-gradient: linear-gradient(135deg, #0A0E1A 0%, #0D1B3E 50%, #0A0E1A 100%);
+            --glow-spread: 0 0 60px rgba(0, 102, 255, 0.15);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --border-glass: rgba(0, 0, 0, 0.06);
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --hero-gradient: linear-gradient(135deg, #F0F4FF 0%, #E0EAFF 50%, #F0F4FF 100%);
+            --glow-spread: 0 0 60px rgba(0, 102, 255, 0.08);
+        }
+
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+            line-height: 1.65;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 102, 255, 0.4), 0 0 60px rgba(0, 102, 255, 0.15);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(0, 102, 255, 0.6), 0 0 80px rgba(0, 102, 255, 0.25);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            * {
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== HEADER / NAVBAR ===== */
+        .header {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            z-index: 100;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-glass);
+            transition: background var(--transition), border var(--transition);
+        }
+
+        .header.scrolled {
+            background: var(--bg-glass);
+            box-shadow: var(--shadow-glass), var(--glow-spread);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-h);
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--blue);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: color var(--transition), background var(--transition);
+            cursor: pointer;
+        }
+
+        .nav a:hover,
+        .nav a:focus-visible {
+            color: var(--blue);
+            background: rgba(0, 102, 255, 0.08);
+        }
+
+        .nav a:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            background: var(--bg-card);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition), border var(--transition);
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* CTA Button */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--blue);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition), transform 0.15s ease, box-shadow var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-cta:hover {
+            background: var(--blue-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 102, 255, 0.35);
+        }
+
+        .btn-cta:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .btn-cta.glow {
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--blue);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 2px solid var(--blue);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition), transform 0.15s ease;
+        }
+
+        .btn-outline:hover {
+            background: var(--blue);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            background: var(--bg-card);
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 20px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 99;
+            background: var(--bg-primary);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .mobile-nav.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 12px 24px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-inner .btn-cta {
+                display: none;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--hero-gradient);
+            overflow: hidden;
+            padding-top: calc(var(--header-h) + 40px);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(0, 102, 255, 0.12);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--blue-glow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-glow 2s ease infinite;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1;
+            letter-spacing: 3px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 .highlight {
+            color: var(--blue);
+            position: relative;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+            animation: fadeUp 0.6s ease 0.4s both;
+        }
+
+        .hero-stat h3 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--blue);
+            letter-spacing: 2px;
+        }
+
+        .hero-stat p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1s ease 0.4s both;
+        }
+
+        .hero-card {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 4/3;
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-glass);
+        }
+
+        .hero-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .hero-card-overlay p {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hero-floating-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--blue);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.85rem;
+            box-shadow: 0 8px 24px rgba(0, 102, 255, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                margin-top: 40px;
+            }
+
+            .hero-floating-badge {
+                top: -8px;
+                right: 8px;
+            }
+        }
+
+        /* ===== SECTION SHARED ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+
+        .service-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition), border var(--transition);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glass), 0 0 40px rgba(0, 102, 255, 0.1);
+            border-color: rgba(0, 102, 255, 0.2);
+        }
+
+        .service-card:focus-within {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .service-img {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.08);
+        }
+
+        .service-img-overlay {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--blue);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-body {
+            padding: 28px;
+        }
+
+        .service-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .service-body p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .service-features li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ===== TRUST BAR ===== */
+        .trust-bar {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .trust-items {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 56px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .trust-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--blue);
+        }
+
+        /* ===== REVIEWS ===== */
+        .reviews {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .reviews-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .review-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-card);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: background var(--transition), border var(--transition), color var(--transition);
+        }
+
+        .review-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 24px;
+            margin-top: 40px;
+            transition: transform 0.5s ease;
+        }
+
+        .review-card {
+            min-width: calc(33.333% - 16px);
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 32px;
+            flex-shrink: 0;
+            transition: border var(--transition);
+        }
+
+        .review-card:hover {
+            border-color: rgba(0, 102, 255, 0.2);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .review-stars svg {
+            width: 18px;
+            height: 18px;
+            color: var(--warning);
+            fill: var(--warning);
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .review-author-info h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .review-author-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 900px) {
+            .review-card {
+                min-width: calc(100% - 16px);
+            }
+        }
+
+        /* ===== FORM / LEAD GEN ===== */
+        .form-section {
+            background: var(--hero-gradient);
+            position: relative;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 102, 255, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-content {}
+
+        .form-promises {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .form-promises li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-promises li .icon-circle {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 102, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .form-promises li svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue);
+        }
+
+        .form-box {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-glass);
+        }
+
+        .form-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-box .form-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            transition: border var(--transition), box-shadow var(--transition);
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            margin-top: 8px;
+        }
+
+        .form-footer-note {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 760px;
+            margin: 48px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: border var(--transition);
+        }
+
+        .faq-item.active {
+            border-color: rgba(0, 102, 255, 0.2);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: left;
+            gap: 16px;
+        }
+
+        .faq-question:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: -2px;
+        }
+
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(0, 102, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform var(--transition), background var(--transition);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: var(--blue);
+        }
+
+        .faq-icon svg {
+            width: 14px;
+            height: 14px;
+            color: var(--blue);
+        }
+
+        .faq-item.active .faq-icon svg {
+            color: #fff;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+
+        .faq-answer p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 60px 0 32px;
+            border-top: 1px solid var(--border-glass);
+            background: var(--bg-secondary);
+            transition: background var(--transition);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            padding: 4px 0;
+            transition: color var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--blue);
+        }
+
+        .footer-bottom {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== BACKGROUND GRID ===== */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(var(--text-primary) 1px, transparent 1px),
+                linear-gradient(90deg, var(--text-primary) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* ===== SERVICE CARD CLICK CUE ===== */
+        .service-card-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .service-card:hover .service-card-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card-hint svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 920px;
+            max-height: 88vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(32px) scale(0.97);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            scrollbar-width: thin;
+            scrollbar-color: var(--blue) transparent;
+        }
+
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close-row {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: flex-end;
+            padding: 16px 16px 0;
+            background: var(--bg-secondary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+
+        .modal-close:hover {
+            background: #ef4444;
+            color: #fff;
+            border-color: #ef4444;
+        }
+
+        .modal-inner {
+            padding: 8px 40px 40px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modal-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--blue);
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .modal-header p {
+            font-size: 0.93rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            margin-bottom: 28px;
+        }
+
+        .modal-col-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-col-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue);
+        }
+
+        .modal-task-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .modal-task-list li {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 9px 13px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 9px;
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .modal-task-list li:hover {
+            border-color: rgba(0, 102, 255, 0.18);
+            background: rgba(0, 102, 255, 0.04);
+        }
+
+        .modal-task-list li svg {
+            width: 14px;
+            height: 14px;
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .modal-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .modal-mini-img {
+            aspect-ratio: 4/3;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: zoom-in;
+            border: 1px solid var(--border-glass);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .modal-mini-img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .modal-mini-img>div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .modal-mini-img>div span {
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 6px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        @media (max-width: 640px) {
+            .modal-inner {
+                padding: 8px 18px 28px;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .modal-mini-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery {
+            background: var(--bg-secondary);
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--border-glass);
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-item-inner {
+            transform: scale(1.04);
+        }
+
+        .gallery-item-bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+
+        .gallery-item-zoom {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-item-zoom {
+            opacity: 1;
+        }
+
+        .gallery-item-zoom svg {
+            width: 36px;
+            height: 36px;
+            color: #fff;
+        }
+
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 14px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+            z-index: 3;
+        }
+
+        .gallery-item-tag {
+            display: inline-flex;
+            padding: 3px 8px;
+            background: rgba(0, 102, 255, 0.85);
+            border-radius: 5px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item-caption {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.88);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 180px;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 200px;
+            }
+
+            .gallery-item.wide,
+            .gallery-item.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        /* ===== BEFORE / AFTER ===== */
+        .ba-section {
+            padding: 80px 0;
+        }
+
+        .ba-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .ba-container {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: ew-resize;
+            user-select: none;
+            touch-action: none;
+            box-shadow: var(--shadow-glass);
+            border: 1px solid var(--border-glass);
+        }
+
+        .ba-side {
+            position: absolute;
+            inset: 0;
+        }
+
+        .ba-before-side {
+            clip-path: inset(0 50% 0 0);
+            z-index: 2;
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 14px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .ba-label-before {
+            left: 14px;
+            background: rgba(220, 50, 50, 0.9);
+            color: #fff;
+        }
+
+        .ba-label-after {
+            right: 14px;
+            background: rgba(0, 196, 140, 0.9);
+            color: #fff;
+        }
+
+        .ba-hint {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            padding: 4px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .ba-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .ba-handle-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        .ba-handle-btn svg {
+            width: 20px;
+            height: 20px;
+            color: var(--blue-deep);
+        }
+
+        .ba-text .section-label {
+            margin-bottom: 12px;
+        }
+
+        .ba-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .ba-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .ba-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ba-stat h4 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--blue);
+            letter-spacing: 2px;
+        }
+
+        .ba-stat p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .ba-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            background: rgba(0, 0, 0, 0.93);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 410;
+        }
+
+        .lb-close:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .lb-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 410;
+        }
+
+        .lb-arrow:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .lb-prev {
+            left: 20px;
+        }
+
+        .lb-next {
+            right: 20px;
+        }
+
+        .lb-content {
+            max-width: 860px;
+            width: calc(100% - 160px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .lb-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .lb-frame>div {
+            width: 100%;
+            height: 100%;
+        }
+
+        .lb-caption {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .lb-content {
+                width: calc(100% - 40px);
+            }
+
+            .lb-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background grid pattern -->
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo" aria-label="Bobi Group Sofia начало">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.3 7 12 12 20.7 7" />
+                        <line x1="12" y1="22" x2="12" y2="12" />
+                    </svg>
+                </div>
+                <div class="logo-text">BOBI <span>GROUP</span></div>
+            </a>
+            <nav class="nav" aria-label="Основна навигация">
+                <a href="#services">Услуги</a>
+                <a href="#gallery">Галерия</a>
+                <a href="#reviews">Отзиви</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Контакт</a>
+            </nav>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Превключи тъмен/светъл режим">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" style="display:none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <a href="#contact" class="btn-cta" style="font-size:0.82rem;padding:10px 22px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    Запитване
+                </a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Отвори меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Затвори меню">&times;</button>
+        <a href="#services" onclick="closeMobileNav()">Услуги</a>
+        <a href="#gallery" onclick="closeMobileNav()">Галерия</a>
+        <a href="#reviews" onclick="closeMobileNav()">Отзиви</a>
+        <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+        <a href="#contact" onclick="closeMobileNav()">Контакт</a>
+        <a href="#contact" class="btn-cta" onclick="closeMobileNav()">Запитване</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-badge"><span class="dot"></span> Работим 7 дни в седмицата</div>
+                    <h1>КЪРТИ. ЧИСТИ.<br><span class="highlight">ИЗВОЗВА.</span></h1>
+                    <p class="hero-sub">Професионално разрушаване, почистване и извозване в София и региона. Бързина,
+                        доверие и гаранция за качество от <strong>Bobi Group</strong>.</p>
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn-cta glow">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            Безплатна Оферта
+                        </a>
+                        <a href="#services" class="btn-outline">
+                            Вижте Услугите
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <h3>500+</h3>
+                            <p>Проекта</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>10+</h3>
+                            <p>Години опит</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>24ч</h3>
+                            <p>Отговор</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <!-- Placeholder with styled gradient -->
+                        <div
+                            style="width:100%;height:100%;background:linear-gradient(135deg, #1a2a4a 0%, #0d1b3e 40%, #1e3a5f 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(0,102,255,0.4)"
+                                stroke-width="1">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <polyline points="3.3 7 12 12 20.7 7" />
+                                <line x1="12" y1="22" x2="12" y2="12" />
+                            </svg>
+                            <span
+                                style="color:rgba(255,255,255,0.3);font-size:0.8rem;font-weight:600;letter-spacing:2px;">BOBI
+                                GROUP SOFIA</span>
+                        </div>
+                        <div class="hero-card-overlay">
+                            <p>Професионален демонтаж в София</p>
+                        </div>
+                    </div>
+                    <div class="hero-floating-badge">Безплатен оглед</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST BAR ==================== -->
+    <div class="trust-bar reveal">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    Лицензирана дейност
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Експресно изпълнение
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    Опитен екип
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <rect x="1" y="3" width="15" height="13" />
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                        <circle cx="5.5" cy="18.5" r="2.5" />
+                        <circle cx="18.5" cy="18.5" r="2.5" />
+                    </svg>
+                    Собствен транспорт
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section id="services">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Какво правим</div>
+                <h2 class="section-title">НАШИТЕ УСЛУГИ</h2>
+                <p class="section-desc">Комплексни решения за демонтаж, почистване и извозване — от жилищни апартаменти
+                    до търговски обекти.</p>
+            </div>
+            <div class="services-grid">
+
+                <!-- Service 1: Demolition -->
+                <div class="service-card reveal" tabindex="0" onclick="openModal('demolition')" role="button"
+                    aria-haspopup="dialog">
+                    <div class="service-img">
+                        <div
+                            style="width:100%;height:100%;background:linear-gradient(135deg,#1a2744,#0d1b3e);display:flex;align-items:center;justify-content:center;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,102,255,0.5)"
+                                stroke-width="1.2" stroke-linecap="round">
+                                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                <line x1="12" y1="22" x2="12" y2="15.5" />
+                                <line x1="22" y1="8.5" x2="12" y2="15.5" />
+                                <line x1="2" y1="8.5" x2="12" y2="15.5" />
+                            </svg>
+                        </div>
+                        <div class="service-img-overlay">Демонтаж</div>
+                    </div>
+                    <div class="service-body">
+                        <h3>КЪРТЕНЕ & ДЕМОНТАЖ</h3>
+                        <p>Бързо и безопасно разрушаване на стени, подове, тавани и цели конструкции с професионално
+                            оборудване.</p>
+                        <ul class="service-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Къртене на бетон и зидария</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Демонтаж на стари инсталации</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Безопасно премахване на конструкции</li>
+                        </ul>
+                        <div class="service-card-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg> Виж подробности</div>
+                    </div>
+                </div>
+
+                <!-- Service 2: Cleaning -->
+                <div class="service-card reveal" tabindex="0" onclick="openModal('cleaning')" role="button"
+                    aria-haspopup="dialog">
+                    <div class="service-img">
+                        <div
+                            style="width:100%;height:100%;background:linear-gradient(135deg,#142233,#0b1a2e);display:flex;align-items:center;justify-content:center;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,0.5)"
+                                stroke-width="1.2" stroke-linecap="round">
+                                <path d="M3 22v-2l4-4h2l1-1 5 5-1 1v2" />
+                                <path d="M15 5.5A3.5 3.5 0 1 1 18.5 2L12 12l-1 1" />
+                                <path d="M10 15l-5 5" />
+                            </svg>
+                        </div>
+                        <div class="service-img-overlay">Почистване</div>
+                    </div>
+                    <div class="service-body">
+                        <h3>ПОЧИСТВАНЕ</h3>
+                        <p>Цялостно почистване след ремонт, след наематели или преди нанасяне — до блясък, с внимание
+                            към детайла.</p>
+                        <ul class="service-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване след строителство</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Основно почистване на имоти</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване на мазета и тавани</li>
+                        </ul>
+                        <div class="service-card-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg> Виж подробности</div>
+                    </div>
+                </div>
+
+                <!-- Service 3: Moving / Hauling -->
+                <div class="service-card reveal" tabindex="0" onclick="openModal('hauling')" role="button"
+                    aria-haspopup="dialog">
+                    <div class="service-img">
+                        <div
+                            style="width:100%;height:100%;background:linear-gradient(135deg,#1a2040,#0e1530);display:flex;align-items:center;justify-content:center;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,140,0.5)"
+                                stroke-width="1.2" stroke-linecap="round">
+                                <rect x="1" y="3" width="15" height="13" />
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                <circle cx="5.5" cy="18.5" r="2.5" />
+                                <circle cx="18.5" cy="18.5" r="2.5" />
+                            </svg>
+                        </div>
+                        <div class="service-img-overlay">Извозване</div>
+                    </div>
+                    <div class="service-body">
+                        <h3>ИЗВОЗВАНЕ</h3>
+                        <p>Транспортиране и депониране на строителни отпадъци, стара мебел и всичко ненужно — бързо и
+                            отговорно.</p>
+                        <ul class="service-features">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Извозване на строителни отпадъци</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Изхвърляне на стара мебел</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Легално депониране</li>
+                        </ul>
+                        <div class="service-card-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="8" x2="12" y2="12" />
+                                <line x1="12" y1="16" x2="12.01" y2="16" />
+                            </svg> Виж подробности</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="gallery-header reveal">
+                <div>
+                    <div class="section-label">Наши проекти</div>
+                    <h2 class="section-title">ГАЛЕРИЯ</h2>
+                    <p class="section-desc">Реални обекти — преди и след нашата работа в София и региона.</p>
+                </div>
+            </div>
+            <div class="gallery-grid">
+
+                <div class="gallery-item wide reveal" data-lb="0">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#0d1535,#1a2a5a);">
+                            <svg style="opacity:.13;position:absolute;" width="90" height="90" viewBox="0 0 24 24"
+                                fill="none" stroke="#4488ff" stroke-width="0.8">
+                                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                <line x1="12" y1="22" x2="12" y2="15.5" />
+                                <line x1="22" y1="8.5" x2="12" y2="15.5" />
+                                <line x1="2" y1="8.5" x2="12" y2="15.5" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Демонтаж</div>
+                            <div class="gallery-item-caption">Пълен демонтаж на апартамент — Люлин</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal" data-lb="1">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#062420,#0d3530);">
+                            <svg style="opacity:.13;position:absolute;" width="70" height="70" viewBox="0 0 24 24"
+                                fill="none" stroke="#00d4ff" stroke-width="0.8">
+                                <path d="M3 22v-2l4-4h2l1-1 5 5-1 1v2" />
+                                <path d="M15 5.5A3.5 3.5 0 1 1 18.5 2L12 12l-1 1" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Почистване</div>
+                            <div class="gallery-item-caption">Почистване след ремонт — Студентски Град</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item tall reveal" data-lb="2">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#151820,#0a0e18);">
+                            <svg style="opacity:.13;position:absolute;" width="80" height="80" viewBox="0 0 24 24"
+                                fill="none" stroke="#94a3b8" stroke-width="0.8">
+                                <rect x="1" y="3" width="15" height="13" />
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                <circle cx="5.5" cy="18.5" r="2.5" />
+                                <circle cx="18.5" cy="18.5" r="2.5" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Извозване</div>
+                            <div class="gallery-item-caption">Извозване на строителни отпадъци — Надежда</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal" data-lb="3">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#1a1e2a,#0d1018);">
+                            <svg style="opacity:.13;position:absolute;" width="70" height="70" viewBox="0 0 24 24"
+                                fill="none" stroke="#6688bb" stroke-width="0.8">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <line x1="3" y1="9" x2="21" y2="9" />
+                                <line x1="9" y1="21" x2="9" y2="9" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Демонтаж</div>
+                            <div class="gallery-item-caption">Събаряне на стени — Младост</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal" data-lb="4">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#0d1a20,#142230);">
+                            <svg style="opacity:.13;position:absolute;" width="70" height="70" viewBox="0 0 24 24"
+                                fill="none" stroke="#44aacc" stroke-width="0.8">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Почистване</div>
+                            <div class="gallery-item-caption">Основно почистване на мазе — Лозенец</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item wide reveal" data-lb="5">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#0a1828,#122038);">
+                            <svg style="opacity:.13;position:absolute;" width="90" height="90" viewBox="0 0 24 24"
+                                fill="none" stroke="#3366cc" stroke-width="0.8">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                                <line x1="12" y1="12" x2="12" y2="16" />
+                                <line x1="10" y1="14" x2="14" y2="14" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Офис</div>
+                            <div class="gallery-item-caption">Пълен офис ремонт — Лозенец, 320 м²</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal" data-lb="6">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#161828,#0d1020);">
+                            <svg style="opacity:.13;position:absolute;" width="70" height="70" viewBox="0 0 24 24"
+                                fill="none" stroke="#8888bb" stroke-width="0.8">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Извозване</div>
+                            <div class="gallery-item-caption">Мебели и уреди — Драгалевци</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal" data-lb="7">
+                    <div class="gallery-item-inner">
+                        <div class="gallery-item-bg" style="background:linear-gradient(145deg,#0d1e12,#152018);">
+                            <svg style="opacity:.13;position:absolute;" width="70" height="70" viewBox="0 0 24 24"
+                                fill="none" stroke="#44bb66" stroke-width="0.8">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                        </div>
+                        <div class="gallery-item-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg></div>
+                        <div class="gallery-item-info">
+                            <div class="gallery-item-tag">Почистване</div>
+                            <div class="gallery-item-caption">Почистване на двор и гараж — Бояна</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BEFORE / AFTER ==================== -->
+    <section class="ba-section">
+        <div class="container">
+            <div class="ba-inner">
+                <div class="ba-container" id="baContainer">
+                    <!-- AFTER (bottom layer) -->
+                    <div class="ba-side" style="background:linear-gradient(145deg,#0d1b3e,#1a2a5a);">
+                        <div
+                            style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;">
+                            <div
+                                style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,102,255,0.06) 1px,transparent 1px);background-size:20px 20px;">
+                            </div>
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(0,196,140,0.3)"
+                                stroke-width="0.8">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- BEFORE (top layer, clipped) -->
+                    <div class="ba-side ba-before-side" id="baBefore"
+                        style="background:linear-gradient(145deg,#2d1e0e,#1e1408);">
+                        <div
+                            style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;">
+                            <div
+                                style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,200,100,0.04) 1px,transparent 1px);background-size:14px 14px;">
+                            </div>
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(180,100,50,0.3)"
+                                stroke-width="0.8">
+                                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                <line x1="12" y1="22" x2="12" y2="15.5" />
+                                <line x1="22" y1="8.5" x2="12" y2="15.5" />
+                                <line x1="2" y1="8.5" x2="12" y2="15.5" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ba-label ba-label-before">Преди</div>
+                    <div class="ba-label ba-label-after">След</div>
+                    <div class="ba-hint">◀ Плъзни ▶</div>
+                    <div class="ba-divider" id="baDivider">
+                        <div class="ba-handle-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="ba-text reveal">
+                    <div class="section-label">Разлика</div>
+                    <h2 class="section-title">ПРЕДИ & СЛЕД</h2>
+                    <p class="ba-description">Вижте разликата, която правим. От запуснати, претрупани пространства до
+                        чисти, готови за ново начало обекти — всеки път с едно и също внимание към детайла.</p>
+                    <div class="ba-stats">
+                        <div class="ba-stat">
+                            <h4>500+</h4>
+                            <p>Трансформирани обекта</p>
+                        </div>
+                        <div class="ba-stat">
+                            <h4>98%</h4>
+                            <p>Доволни клиенти</p>
+                        </div>
+                        <div class="ba-stat">
+                            <h4>1 ден</h4>
+                            <p>Средно изпълнение</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REVIEWS ==================== -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="reviews-header reveal">
+                <div>
+                    <div class="section-label">Доверие</div>
+                    <h2 class="section-title">КАКВО КАЗВАТ КЛИЕНТИТЕ</h2>
+                    <p class="section-desc">Стотици доволни клиенти в София и региона.</p>
+                </div>
+                <div class="reviews-controls">
+                    <button class="review-btn" id="prevReview" aria-label="Предишен отзив">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </button>
+                    <button class="review-btn" id="nextReview" aria-label="Следващ отзив">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div style="overflow:hidden;">
+                <div class="reviews-track" id="reviewsTrack">
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <p class="review-text">"Екипът дойде навреме, свърши всичко за ден и половина и почистиха след
+                            себе си. Абсолютно професионална работа!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar">ИП</div>
+                            <div class="review-author-info">
+                                <h4>Иван Петров</h4>
+                                <p>Ремонт на апартамент, Люлин</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <p class="review-text">"Имах нужда от спешно извозване на строителни отпадъци. Обадих се и още
+                            същия ден камионът беше пред входа. Супер обслужване!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar">МД</div>
+                            <div class="review-author-info">
+                                <h4>Мария Димитрова</h4>
+                                <p>Извозване, Студентски Град</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <p class="review-text">"Разчистиха целия ми мазе за няколко часа. Чисто, подредено и на добра
+                            цена. Препоръчвам ги горещо на всеки!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar">ГС</div>
+                            <div class="review-author-info">
+                                <h4>Георги Стоянов</h4>
+                                <p>Почистване на мазе, Надежда</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <p class="review-text">"За ремонта на офиса ни бяха незаменими — скъртиха стари стени, изнесоха
+                            всичко и ни оставиха чисто пространство. Отлична работа."</p>
+                        <div class="review-author">
+                            <div class="review-avatar">ЕК</div>
+                            <div class="review-author-info">
+                                <h4>Елена Костова</h4>
+                                <p>Офис ремонт, Лозенец</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <p class="review-text">"Коректни, точни и работливи момчета. Вдигнаха 3 тона отпадъци от двора.
+                            Идват пак при нужда, без съмнение!"</p>
+                        <div class="review-author">
+                            <div class="review-avatar">НТ</div>
+                            <div class="review-author-info">
+                                <h4>Николай Тодоров</h4>
+                                <p>Почистване на двор, Драгалевци</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LEAD GEN FORM ==================== -->
+    <section id="contact" class="form-section">
+        <div class="container">
+            <div class="form-grid">
+                <div class="form-content reveal">
+                    <div class="section-label">Свържете се</div>
+                    <h2 class="section-title">ВЗЕМЕТЕ БЕЗПЛАТНА ОФЕРТА</h2>
+                    <p class="section-desc">Попълнете формата и ще се свържем с вас до 24 часа с персонална оферта —
+                        безплатно и без ангажимент.</p>
+                    <ul class="form-promises">
+                        <li>
+                            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg></div>
+                            Безплатен оглед на обекта
+                        </li>
+                        <li>
+                            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg></div>
+                            Отговор до 24 часа
+                        </li>
+                        <li>
+                            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg></div>
+                            Гарантирано качество
+                        </li>
+                        <li>
+                            <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg></div>
+                            Конкурентни цени без скрити такси
+                        </li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <div class="form-box">
+                        <h3>БЕЗПЛАТНА ОФЕРТА</h3>
+                        <p class="form-sub">Попълнете данните и ние ще ви потърсим</p>
+                        <div class="form-group">
+                            <label for="fname">Вашето Име</label>
+                            <input type="text" id="fname" name="fname" placeholder="Иван Иванов" required
+                                autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="fphone">Телефон</label>
+                            <input type="tel" id="fphone" name="fphone" placeholder="+359 8XX XXX XXX" required
+                                autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="fservice">Вид Услуга</label>
+                            <select id="fservice" name="fservice" required>
+                                <option value="" disabled selected>Изберете услуга</option>
+                                <option value="demolition">Къртене & Демонтаж</option>
+                                <option value="cleaning">Почистване</option>
+                                <option value="hauling">Извозване</option>
+                                <option value="complex">Комплексна услуга</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fmessage">Допълнителна информация <span
+                                    style="font-weight:400;text-transform:none;letter-spacing:0">(по
+                                    желание)</span></label>
+                            <textarea id="fmessage" name="fmessage"
+                                placeholder="Опишете накратко какво имате нужда..."></textarea>
+                        </div>
+                        <button type="button" class="btn-cta form-submit glow" onclick="handleFormSubmit()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                            Изпрати Запитване
+                        </button>
+                        <p class="form-footer-note">Вашите данни са защитени и няма да бъдат споделяни.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section id="faq">
+        <div class="container">
+            <div style="text-align:center;" class="reveal">
+                <div class="section-label" style="justify-content:center;">Въпроси</div>
+                <h2 class="section-title">ЧЕСТО ЗАДАВАНИ ВЪПРОСИ</h2>
+                <p class="section-desc" style="margin:0 auto;">Отговори на най-честите въпроси от нашите клиенти.</p>
+            </div>
+            <div class="faq-list">
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        Колко струва услугата?
+                        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg></div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Цената зависи от обема на работата, типа услуга и достъпността на обекта. Предлагаме
+                            безплатен оглед и точна оферта без скрити такси. Свържете се с нас за персонална оценка.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        Колко бързо можете да започнете?
+                        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg></div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>При спешни случаи можем да реагираме още в рамките на деня. За планирани проекти обикновено
+                            започваме в рамките на 2-3 работни дни след договаряне.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        Работите ли в почивни дни?
+                        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg></div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, работим 7 дни в седмицата, включително събота и неделя. Разбираме, че ремонтите нямат
+                            почивен ден.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        Извозвате ли строителните отпадъци?
+                        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg></div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, предлагаме пълна комплексна услуга — от къртенето през почистването до извозването и
+                            легалното депониране на всички отпадъци.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        Покривате ли цяла София?
+                        <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg></div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, обслужваме цяла София и близкия регион. За обекти извън града, моля свържете се с нас за
+                            уточняване на условията.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" aria-label="Bobi Group Sofia начало">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+                                stroke-linecap="round">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <polyline points="3.3 7 12 12 20.7 7" />
+                                <line x1="12" y1="22" x2="12" y2="12" />
+                            </svg>
+                        </div>
+                        <div class="logo-text">BOBI <span>GROUP</span></div>
+                    </a>
+                    <p>Професионално разрушаване, почистване и извозване в София. Вашият надежден партньор за всеки
+                        проект.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>УСЛУГИ</h4>
+                    <a href="#services">Къртене</a>
+                    <a href="#services">Почистване</a>
+                    <a href="#services">Извозване</a>
+                    <a href="#contact">Безплатна оферта</a>
+                </div>
+                <div class="footer-col">
+                    <h4>КОМПАНИЯ</h4>
+                    <a href="#hero">За нас</a>
+                    <a href="#gallery">Галерия</a>
+                    <a href="#reviews">Отзиви</a>
+                    <a href="#faq">Въпроси</a>
+                </div>
+                <div class="footer-col">
+                    <h4>КОНТАКТ</h4>
+                    <a href="tel:+359888000000">+359 888 000 000</a>
+                    <a href="mailto:info@bobigroup.bg">info@bobigroup.bg</a>
+                    <a>София, България</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bobi Group Sofia. Всички права запазени.</p>
+                <p>Създадено с грижа за качеството.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Modal: Demolition -->
+    <div class="modal-overlay" id="modal-demolition" role="dialog" aria-modal="true" aria-labelledby="modal-demo-title">
+        <div class="modal">
+            <div class="modal-close-row">
+                <button class="modal-close" onclick="closeModal('demolition')" aria-label="Затвори">&#x2715;</button>
+            </div>
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <div class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round">
+                            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                            <line x1="12" y1="22" x2="12" y2="15.5" />
+                            <line x1="22" y1="8.5" x2="12" y2="15.5" />
+                            <line x1="2" y1="8.5" x2="12" y2="15.5" />
+                        </svg></div>
+                    <div>
+                        <h2 id="modal-demo-title">КЪРТЕНЕ & ДЕМОНТАЖ</h2>
+                        <p>Бързо, безопасно и отговорно разрушаване на всякакви конструкции — от единична стена до
+                            цялостен апартамент. Работим с професионална техника и спазваме всички норми за безопасност.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <polyline points="9 11 12 14 22 4" />
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                            </svg> Включени услуги</div>
+                        <ul class="modal-task-list">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Ръчно събаряне на тухлени стени</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Механично разрушаване на бетон</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Демонтаж на подови настилки</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Събаряне на гипсокартон и прегради</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Демонтаж на санитарни елементи</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Премахване на стари инсталации</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Разрушаване на тавани и мазилки</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Безопасна работа до носещи стени</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18M9 21V9" />
+                            </svg> Наши проекти</div>
+                        <div class="modal-mini-grid">
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0d1535,#1a2a5a);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(100,150,255,0.4)"
+                                        stroke-width="1">
+                                        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                    </svg><span>Люлин</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#111828,#1c2a40);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(80,120,200,0.4)"
+                                        stroke-width="1">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <line x1="3" y1="9" x2="21" y2="9" />
+                                    </svg><span>Младост</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0a1520,#152030);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(60,100,180,0.4)"
+                                        stroke-width="1">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    </svg><span>Надежда</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0d1a2a,#1a2840);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(70,130,220,0.4)"
+                                        stroke-width="1">
+                                        <line x1="12" y1="2" x2="12" y2="22" />
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5" />
+                                    </svg><span>Витоша</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#101820,#1a2838);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(90,140,230,0.4)"
+                                        stroke-width="1">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg><span>Дружба</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0c1525,#162035);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(50,110,200,0.4)"
+                                        stroke-width="1">
+                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                                    </svg><span>Лозенец</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#contact" class="btn-cta" onclick="closeModal('demolition')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Запитване за демонтаж
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Cleaning -->
+    <div class="modal-overlay" id="modal-cleaning" role="dialog" aria-modal="true" aria-labelledby="modal-clean-title">
+        <div class="modal">
+            <div class="modal-close-row">
+                <button class="modal-close" onclick="closeModal('cleaning')" aria-label="Затвори">&#x2715;</button>
+            </div>
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <div class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round">
+                            <path d="M3 22v-2l4-4h2l1-1 5 5-1 1v2" />
+                            <path d="M15 5.5A3.5 3.5 0 1 1 18.5 2L12 12l-1 1" />
+                            <path d="M10 15l-5 5" />
+                        </svg></div>
+                    <div>
+                        <h2 id="modal-clean-title">ПОЧИСТВАНЕ</h2>
+                        <p>Цялостно и задълбочено почистване след ремонт, при нанасяне или напускане на имот. Работим с
+                            професионална техника и препарати — до блясък, без остатъчен прах или строителни материали.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <polyline points="9 11 12 14 22 4" />
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                            </svg> Включени услуги</div>
+                        <ul class="modal-task-list">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване на строителен прах</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Измиване на прозорци и дограма</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Основно почистване на кухня и баня</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване на подови настилки</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Дълбоко почистване на стени</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване на мазета и тавани</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Дезинфекция и обезмирисяване</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване при нанасяне/напускане</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18M9 21V9" />
+                            </svg> Наши проекти</div>
+                        <div class="modal-mini-grid">
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#062420,#0d3530);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,200,180,0.4)"
+                                        stroke-width="1">
+                                        <path d="M3 22v-2l4-4h2l1-1 5 5-1 1v2" />
+                                    </svg><span>Студентски</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0a2028,#103040);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,180,160,0.4)"
+                                        stroke-width="1">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg><span>Банишора</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#081e1a,#102a24);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,160,140,0.4)"
+                                        stroke-width="1">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    </svg><span>Изгрев</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0d2420,#162e28);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,220,200,0.4)"
+                                        stroke-width="1">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    </svg><span>Бояна</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#091e1c,#102826);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,200,180,0.4)"
+                                        stroke-width="1">
+                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                                    </svg><span>Лозенец</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#0a2220,#142c28);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(0,180,160,0.4)"
+                                        stroke-width="1">
+                                        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                    </svg><span>Надежда</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#contact" class="btn-cta" onclick="closeModal('cleaning')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Запитване за почистване
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Hauling -->
+    <div class="modal-overlay" id="modal-hauling" role="dialog" aria-modal="true" aria-labelledby="modal-haul-title">
+        <div class="modal">
+            <div class="modal-close-row">
+                <button class="modal-close" onclick="closeModal('hauling')" aria-label="Затвори">&#x2715;</button>
+            </div>
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <div class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round">
+                            <rect x="1" y="3" width="15" height="13" />
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                            <circle cx="5.5" cy="18.5" r="2.5" />
+                            <circle cx="18.5" cy="18.5" r="2.5" />
+                        </svg></div>
+                    <div>
+                        <h2 id="modal-haul-title">ИЗВОЗВАНЕ</h2>
+                        <p>Транспортиране и легално депониране на строителни отпадъци, стара мебел и всичко ненужно.
+                            Собствен транспорт, бърза реакция и отговорност към околната среда.</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <polyline points="9 11 12 14 22 4" />
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                            </svg> Включени услуги</div>
+                        <ul class="modal-task-list">
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Извозване на строителни отпадъци</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Транспорт на стара мебел</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Извозване на електроуреди</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Едрогабаритни предмети и боклук</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Легално депониране на отпадъци</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Разделно събиране и рециклиране</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Бърза реакция при спешни случаи</li>
+                            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Почистване след наводнения</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="modal-col-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <path d="M3 9h18M9 21V9" />
+                            </svg> Наши проекти</div>
+                        <div class="modal-mini-grid">
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#151820,#0a0e18);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(150,160,180,0.4)"
+                                        stroke-width="1">
+                                        <rect x="1" y="3" width="15" height="13" />
+                                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                    </svg><span>Надежда</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#181a20,#0e1018);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(130,140,160,0.4)"
+                                        stroke-width="1">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg><span>Драгалевци</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#121520,#0a0d18);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,140,0.4)"
+                                        stroke-width="1">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4" />
+                                    </svg><span>Бояна</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#141620,#0b0e18);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(120,130,160,0.4)"
+                                        stroke-width="1">
+                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                                    </svg><span>Люлин</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#161820,#0c0f18);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(110,120,150,0.4)"
+                                        stroke-width="1">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    </svg><span>Младост</span></div>
+                            </div>
+                            <div class="modal-mini-img">
+                                <div style="background:linear-gradient(135deg,#131620,#0a0d18);"><svg width="28"
+                                        height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(140,150,170,0.4)"
+                                        stroke-width="1">
+                                        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                                    </svg><span>Лозенец</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#contact" class="btn-cta" onclick="closeModal('hauling')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Запитване за извозване
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Галерия преглед">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Затвори">&#x2715;</button>
+        <button class="lb-arrow lb-prev" onclick="lightboxNav(-1)" aria-label="Предишна">&#8249;</button>
+        <button class="lb-arrow lb-next" onclick="lightboxNav(1)" aria-label="Следваща">&#8250;</button>
+        <div class="lb-content">
+            <div class="lb-frame" id="lbFrame"></div>
+            <p class="lb-caption" id="lbCaption"></p>
+        </div>
+    </div>
+
+    <script>
+        // ===== Theme Toggle =====
+        const html = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        const iconSun = toggle.querySelector('.icon-sun');
+        const iconMoon = toggle.querySelector('.icon-moon');
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                iconSun.style.display = 'block';
+                iconMoon.style.display = 'none';
+            } else {
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'block';
+            }
+            localStorage.setItem('bobi-theme', theme);
+        }
+
+        toggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const saved = localStorage.getItem('bobi-theme');
+        if (saved) setTheme(saved);
+
+        // ===== Sticky Header =====
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+
+        // ===== Mobile Nav =====
+        const hamburger = document.getElementById('hamburgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileClose = document.getElementById('mobileClose');
+
+        hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+        mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+        function closeMobileNav() { mobileNav.classList.remove('open'); }
+
+        // ===== Scroll Reveal =====
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // ===== Reviews Slider =====
+        const track = document.getElementById('reviewsTrack');
+        const prevBtn = document.getElementById('prevReview');
+        const nextBtn = document.getElementById('nextReview');
+        let reviewIndex = 0;
+        const cards = track.querySelectorAll('.review-card');
+
+        function getVisibleCount() {
+            if (window.innerWidth <= 900) return 1;
+            return 3;
+        }
+
+        function slideReviews() {
+            const visible = getVisibleCount();
+            const maxIndex = Math.max(0, cards.length - visible);
+            if (reviewIndex > maxIndex) reviewIndex = maxIndex;
+            if (reviewIndex < 0) reviewIndex = 0;
+            const card = cards[0];
+            const gap = 24;
+            const cardW = card.offsetWidth + gap;
+            track.style.transform = `translateX(-${reviewIndex * cardW}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => { reviewIndex--; slideReviews(); });
+        nextBtn.addEventListener('click', () => { reviewIndex++; slideReviews(); });
+        window.addEventListener('resize', slideReviews);
+
+        // ===== FAQ Accordion =====
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isActive = item.classList.contains('active');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                // Toggle clicked
+                if (!isActive) {
+                    item.classList.add('active');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // ===== Modal =====
+        function openModal(id) {
+            const overlay = document.getElementById('modal-' + id);
+            if (!overlay) return;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeModal(id);
+            }, { once: true });
+        }
+        function closeModal(id) {
+            const overlay = document.getElementById('modal-' + id);
+            if (!overlay) return;
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.open').forEach(o => {
+                    const id = o.id.replace('modal-', '');
+                    closeModal(id);
+                });
+                closeLightbox();
+            }
+        });
+
+        // ===== Lightbox =====
+        const lbData = [
+            { gradient: 'linear-gradient(145deg,#0d1535,#1a2a5a)', icon: 'rgba(100,150,255,0.25)', caption: 'Пълен демонтаж на апартамент — Люлин' },
+            { gradient: 'linear-gradient(145deg,#062420,#0d3530)', icon: 'rgba(0,200,180,0.25)', caption: 'Почистване след ремонт — Студентски Град' },
+            { gradient: 'linear-gradient(145deg,#151820,#0a0e18)', icon: 'rgba(140,150,180,0.25)', caption: 'Извозване на строителни отпадъци — Надежда' },
+            { gradient: 'linear-gradient(145deg,#1a1e2a,#0d1018)', icon: 'rgba(80,120,200,0.25)', caption: 'Събаряне на стени — Младост' },
+            { gradient: 'linear-gradient(145deg,#0d1a20,#142230)', icon: 'rgba(60,160,200,0.25)', caption: 'Основно почистване на мазе — Лозенец' },
+            { gradient: 'linear-gradient(145deg,#0a1828,#122038)', icon: 'rgba(50,100,200,0.25)', caption: 'Офис ремонт — Лозенец, 320 м²' },
+            { gradient: 'linear-gradient(145deg,#161828,#0d1020)', icon: 'rgba(100,100,180,0.25)', caption: 'Мебели и уреди — Драгалевци' },
+            { gradient: 'linear-gradient(145deg,#0d1e12,#152018)', icon: 'rgba(60,180,100,0.25)', caption: 'Почистване на двор и гараж — Бояна' }
+        ];
+        let lbIndex = 0;
+
+        document.querySelectorAll('.gallery-item[data-lb]').forEach(item => {
+            item.addEventListener('click', function () {
+                lbIndex = parseInt(this.dataset.lb);
+                renderLightbox();
+                document.getElementById('lightbox').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function renderLightbox() {
+            const d = lbData[lbIndex];
+            document.getElementById('lbFrame').innerHTML =
+                `<div style="width:100%;height:100%;background:${d.gradient};display:flex;align-items:center;justify-content:center;">
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:20px 20px;"></div>
+    </div>`;
+            document.getElementById('lbCaption').textContent = d.caption;
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function lightboxNav(dir) {
+            lbIndex = (lbIndex + dir + lbData.length) % lbData.length;
+            renderLightbox();
+        }
+        document.getElementById('lightbox').addEventListener('click', function (e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // ===== Before / After Slider =====
+        (function () {
+            const container = document.getElementById('baContainer');
+            if (!container) return;
+            const before = document.getElementById('baBefore');
+            const divider = document.getElementById('baDivider');
+            let dragging = false;
+
+            function setPos(x) {
+                const rect = container.getBoundingClientRect();
+                let pct = Math.max(5, Math.min(95, (x - rect.left) / rect.width * 100));
+                before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+                divider.style.left = pct + '%';
+            }
+
+            container.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+            document.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+            document.addEventListener('mouseup', () => { dragging = false; });
+            container.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+            document.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+            document.addEventListener('touchend', () => { dragging = false; });
+        })();
+
+        // ===== Magnetic Buttons =====
+        document.querySelectorAll('.btn-cta, .btn-outline').forEach(btn => {
+            btn.addEventListener('mousemove', function (e) {
+                const r = this.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) * 0.18;
+                const y = (e.clientY - r.top - r.height / 2) * 0.18;
+                this.style.transition = 'transform 0.1s ease, background var(--transition), box-shadow var(--transition)';
+                this.style.transform = `translate(${x}px, ${y - 2}px)`;
+            });
+            btn.addEventListener('mouseleave', function () {
+                this.style.transition = 'transform 0.6s cubic-bezier(0.34,1.56,0.64,1), background var(--transition), box-shadow var(--transition)';
+                this.style.transform = '';
+            });
+        });
+
+        // ===== Form Submit =====
+        function handleFormSubmit() {
+            const name = document.getElementById('fname').value.trim();
+            const phone = document.getElementById('fphone').value.trim();
+            const service = document.getElementById('fservice').value;
+
+            if (!name || !phone || !service) {
+                alert('Моля, попълнете всички задължителни полета.');
+                return;
+            }
+
+            const btn = document.querySelector('.form-submit');
+            btn.textContent = 'Изпращане...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Запитването е изпратено!`;
+                btn.style.background = '#00C48C';
+                btn.style.opacity = '1';
+                btn.style.animation = 'none';
+                btn.style.boxShadow = '0 0 20px rgba(0,196,140,0.4)';
+            }, 1200);
+        }
+    </script>
+</body>
+
+</html>
