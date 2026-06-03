@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.bobi-group.com/sitemap.xml
