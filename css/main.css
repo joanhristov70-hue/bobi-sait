@@ -35,3 +35,77 @@
 .logo-img:hover{transform:scale(1.08)}
 .hero-h1-sub{font-size:90%;}
 .nav a.nav-active { color: var(--blue); background: rgba(0,102,255,.08); }
+/* ── Viber Floating Action Button (Premium, supersedes legacy .viber-fab) ── */
+.viber-fab {
+  /* override legacy circle/background/box-shadow rules earlier in this file */
+  width: auto;
+  height: auto;
+  background: transparent;
+  box-shadow: none;
+
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 50px;
+  filter: drop-shadow(0 4px 24px rgba(91,33,182,.45));
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), filter .2s ease;
+}
+.viber-fab::before { content: none; }   /* disable legacy pulse ring */
+
+.viber-fab:hover {
+  transform: translateY(-3px) scale(1.04);
+  filter: drop-shadow(0 8px 32px rgba(91,33,182,.65));
+  box-shadow: none;
+}
+.viber-fab:active { transform: scale(.97); }
+
+.viber-fab__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #5B21B6 100%);
+  border-radius: 50px;
+  padding: 12px 18px 12px 14px;
+  border: 1px solid rgba(255,255,255,.15);
+}
+.viber-fab__icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
+}
+.viber-fab__label {
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.viber-fab__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #8B5CF6, #5B21B6);
+  opacity: .4;
+  animation: viber-pulse 2.4s ease-out infinite;
+  z-index: 1;
+}
+@keyframes viber-pulse {
+  0%   { transform: scale(1);    opacity: .4; }
+  70%  { transform: scale(1.18); opacity: 0; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+@media (max-width: 600px) {
+  .viber-fab { bottom: 20px; right: 16px; }
+  .viber-fab__label { display: none; }
+  .viber-fab__inner { padding: 13px; border-radius: 50%; }
+  .viber-fab__pulse { border-radius: 50%; }
+}
