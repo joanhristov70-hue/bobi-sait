@@ -29,6 +29,12 @@
 .zstat-l{font-size:.7rem;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
 @media(max-width:900px){.zones-layout{grid-template-columns:1fr;overflow:hidden;max-width:100%}#gmap{height:320px;width:100% !important;max-width:100% !important}.zones-side{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.side-title,.side-sub{grid-column:1/-1}.map-outer{clip-path:inset(0 0 0 0 round 20px);transform:translateZ(0);width:calc(100vw - 48px) !important;max-width:calc(100vw - 48px) !important;overflow:hidden !important}.zones-container{overflow:hidden !important;max-width:100% !important}#zones{overflow:hidden !important}}
 @media(max-width:520px){.zones-side{grid-template-columns:1fr}.zones-stats{grid-template-columns:repeat(3,1fr)}#zones{padding:64px 0 56px}}
+.district-grid-outer{overflow:visible !important;clip-path:none !important;padding:28px 32px;min-height:460px;display:flex;flex-direction:column;gap:20px;}
+.district-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px;padding:4px 0;flex:1;align-content:start;}
+.district-grid .zone-item{margin-bottom:0;}
+.district-grid .zone-item:hover,.district-grid .zone-item.active{transform:none !important;}
+@media(max-width:900px){.district-grid-outer{width:auto !important;max-width:100% !important;padding:20px;min-height:auto;}.district-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:520px){.district-grid{grid-template-columns:repeat(2,1fr);}}
 
 .logo-img-wrap{height:44px;width:44px;overflow:hidden;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .logo-img{height:44px;width:44px;object-fit:cover;object-position:center;border-radius:10px;transition:transform .3s}
