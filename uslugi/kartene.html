@@ -441,12 +441,12 @@
 
     /* Za kogo – heading */
     gsap.from('#s-za-kogo .s-title',{
-      scrollTrigger:{trigger:'#s-za-kogo .s-title',start:'top 85%',once:true},
+      scrollTrigger:{trigger:'#s-za-kogo .s-title',start:'top 85%',once:true},immediateRender:false,
       opacity:0,y:30,duration:0.7,ease:'power2.out'
     });
     /* Za kogo – cards (staggered, max 4 at once) */
     gsap.from('#s-za-kogo .zk-card',{
-      scrollTrigger:{trigger:'#s-za-kogo',start:'top 80%',once:true},
+      scrollTrigger:{trigger:'#s-za-kogo',start:'top 80%',once:true},immediateRender:false,
       opacity:0,y:40,duration:0.6,stagger:0.15,ease:'power2.out',
       onStart:function(){gsap.set('#s-za-kogo .zk-card',{willChange:'transform'});},
       onComplete:function(){gsap.set('#s-za-kogo .zk-card',{willChange:'auto'});}
@@ -454,12 +454,12 @@
 
     /* Process – heading */
     gsap.from('#s-protses .s-title',{
-      scrollTrigger:{trigger:'#s-protses .s-title',start:'top 85%',once:true},
+      scrollTrigger:{trigger:'#s-protses .s-title',start:'top 85%',once:true},immediateRender:false,
       opacity:0,y:30,duration:0.7,ease:'power2.out'
     });
     /* Process – steps (staggered left→right, 4 elements) */
     gsap.from('#s-protses .proc-card',{
-      scrollTrigger:{trigger:'#s-protses .process-grid',start:'top 80%',once:true},
+      scrollTrigger:{trigger:'#s-protses .process-grid',start:'top 80%',once:true},immediateRender:false,
       opacity:0,x:-20,duration:0.5,stagger:0.12,ease:'power2.out',
       onStart:function(){gsap.set('#s-protses .proc-card',{willChange:'transform'});},
       onComplete:function(){gsap.set('#s-protses .proc-card',{willChange:'auto'});}
@@ -467,12 +467,12 @@
 
     /* Prices – heading */
     gsap.from('#s-tseni .s-title',{
-      scrollTrigger:{trigger:'#s-tseni .s-title',start:'top 85%',once:true},
+      scrollTrigger:{trigger:'#s-tseni .s-title',start:'top 85%',once:true},immediateRender:false,
       opacity:0,y:30,duration:0.7,ease:'power2.out'
     });
     /* Prices – rows (staggered right→center, 4 rows) */
     gsap.from('#s-tseni table tr',{
-      scrollTrigger:{trigger:'#s-tseni table',start:'top 80%',once:true},
+      scrollTrigger:{trigger:'#s-tseni table',start:'top 80%',once:true},immediateRender:false,
       opacity:0,x:20,duration:0.5,stagger:0.08,ease:'power2.out',
       onStart:function(){gsap.set('#s-tseni table tr',{willChange:'transform'});},
       onComplete:function(){gsap.set('#s-tseni table tr',{willChange:'auto'});}
@@ -480,12 +480,12 @@
 
     /* FAQ – heading */
     gsap.from('#s-faq .s-title',{
-      scrollTrigger:{trigger:'#s-faq .s-title',start:'top 85%',once:true},
+      scrollTrigger:{trigger:'#s-faq .s-title',start:'top 85%',once:true},immediateRender:false,
       opacity:0,y:30,duration:0.7,ease:'power2.out'
     });
     /* FAQ – accordion items (staggered, max 8 = within 12-element limit) */
     gsap.from('#s-faq .faq-details',{
-      scrollTrigger:{trigger:'#s-faq',start:'top 80%',once:true},
+      scrollTrigger:{trigger:'#s-faq',start:'top 80%',once:true},immediateRender:false,
       opacity:0,y:20,duration:0.45,stagger:0.07,ease:'power2.out',
       onStart:function(){gsap.set('#s-faq .faq-details',{willChange:'transform'});},
       onComplete:function(){gsap.set('#s-faq .faq-details',{willChange:'auto'});}
@@ -493,7 +493,7 @@
 
     /* CTA – whole section scale-fade */
     gsap.from('#s-cta',{
-      scrollTrigger:{trigger:'#s-cta',start:'top 80%',once:true},
+      scrollTrigger:{trigger:'#s-cta',start:'top 80%',once:true},immediateRender:false,
       opacity:0,scale:0.97,duration:0.7,ease:'power3.out',
       onStart:function(){gsap.set('#s-cta',{willChange:'transform'});},
       onComplete:function(){gsap.set('#s-cta',{willChange:'auto'});}
