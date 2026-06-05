@@ -193,27 +193,47 @@
   </div>
 </section>
 
+<style>
+/* Za kogo redesign */
+.zk-section{background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:28px 28px;}
+.zk-card{position:relative;border-radius:var(--r);padding:30px;background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:default;overflow:hidden;}
+.zk-card-1{border-top:3px solid #3B82F6;}
+.zk-card-2{border-top:3px solid #F59E0B;}
+.zk-card-3{border-top:3px solid #10B981;}
+.zk-card-4{border-top:3px solid #8B5CF6;}
+.zk-card-1:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(59,130,246,0.18);border-top-color:#60A5FA;}
+.zk-card-2:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(245,158,11,0.18);border-top-color:#FCD34D;}
+.zk-card-3:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(16,185,129,0.18);border-top-color:#34D399;}
+.zk-card-4:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(139,92,246,0.18);border-top-color:#A78BFA;}
+.zk-num{position:absolute;top:12px;right:16px;font-size:4rem;font-weight:900;opacity:0.06;color:#ffffff;pointer-events:none;user-select:none;line-height:1;}
+.zk-accent-line{width:64px;height:3px;background:linear-gradient(90deg,#3B82F6,#10B981);border-radius:2px;margin:8px auto 24px;display:block;}
+</style>
 <!-- Za kogo -->
-<section style="padding:80px 0;">
+<section id="s-za-kogo" class="zk-section" style="padding:80px 0;">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <h2 class="s-title">ЗА КОГО Е ТАЗИ УСЛУГА</h2>
+      <span class="zk-accent-line" aria-hidden="true"></span>
       <p class="s-desc" style="margin:0 auto;">Ако се познавате в някоя от тези ситуации — ние сме правилният избор:</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;" class="reveal">
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:30px;">
+      <div class="zk-card zk-card-1">
+        <span class="zk-num" aria-hidden="true">01</span>
         <h3 style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:1.5px;color:var(--txt);margin-bottom:14px;">Местите домакинство</h3>
         <p style="font-size:.9rem;color:var(--txt2);line-height:1.75;">Искате местенето да мине бързо и без стрес. Нашият екип разглобява, пренася и нарежда — вие само посочвате накъде.</p>
       </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:30px;">
+      <div class="zk-card zk-card-2">
+        <span class="zk-num" aria-hidden="true">02</span>
         <h3 style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:1.5px;color:var(--txt);margin-bottom:14px;">Правите ремонт</h3>
         <p style="font-size:.9rem;color:var(--txt2);line-height:1.75;">След демонтаж се трупат тонове строителни отпадъци. Извозваме всичко до лицензирано депо и издаваме документ.</p>
       </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:30px;">
+      <div class="zk-card zk-card-3">
+        <span class="zk-num" aria-hidden="true">03</span>
         <h3 style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:1.5px;color:var(--txt);margin-bottom:14px;">Почиствате мазе или гараж</h3>
         <p style="font-size:.9rem;color:var(--txt2);line-height:1.75;">Натрупани с години вещи, стари мебели, боклуци. Изнасяме всичко в рамките на деня.</p>
       </div>
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:30px;">
+      <div class="zk-card zk-card-4">
+        <span class="zk-num" aria-hidden="true">04</span>
         <h3 style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:1.5px;color:var(--txt);margin-bottom:14px;">Местите офис</h3>
         <p style="font-size:.9rem;color:var(--txt2);line-height:1.75;">Имате краен срок и не можете да си позволите загубен работен ден. Работим бързо, внимателно и по предварително договорен график.</p>
       </div>
@@ -222,7 +242,7 @@
 </section>
 
 <!-- Process -->
-<section style="padding:80px 0;background:var(--bg2);">
+<section id="s-protses" style="padding:80px 0;background:var(--bg2);">
   <div class="container">
     <div class="reveal" style="text-align:center;margin-bottom:48px;">
       <h2 class="s-title">КАК ПРОТИЧА ПРОЦЕСЪТ</h2>
@@ -257,7 +277,7 @@
 </section>
 
 <!-- Prices -->
-<section style="padding:80px 0;">
+<section id="s-tseni" style="padding:80px 0;">
   <div class="container">
     <div class="reveal" style="max-width:700px;margin:0 auto;">
       <h2 class="s-title" style="text-align:center;margin-bottom:40px;">ПРИБЛИЗИТЕЛНИ ЦЕНИ</h2>
@@ -287,7 +307,7 @@
 </section>
 
 <!-- FAQ -->
-<section style="padding:80px 0;background:var(--bg2);">
+<section id="s-faq" style="padding:80px 0;background:var(--bg2);">
   <div class="container">
     <div class="reveal" style="max-width:740px;margin:0 auto;">
       <h2 class="s-title" style="text-align:center;margin-bottom:44px;">ВЪПРОСИ И ОТГОВОРИ</h2>
@@ -337,7 +357,7 @@
 </section>
 
 <!-- CTA -->
-<section style="padding:80px 0;">
+<section id="s-cta" style="padding:80px 0;">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
       <h2 class="s-title">Трябва ви извозване или хамали в София?</h2>
@@ -417,5 +437,89 @@
 
 <script src="/js/nav-loader.js?v=5" defer></script>
 <script src="/js/main.js?v=5" defer></script>
+<script>
+(function(){
+  var base='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/';
+  function run(){
+    gsap.registerPlugin(ScrollTrigger);
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* Za kogo – heading */
+    gsap.from('#s-za-kogo .s-title',{
+      scrollTrigger:{trigger:'#s-za-kogo .s-title',start:'top 85%',once:true},
+      opacity:0,y:30,duration:0.7,ease:'power2.out'
+    });
+    /* Za kogo – cards (staggered, max 4 at once) */
+    gsap.from('#s-za-kogo .zk-card',{
+      scrollTrigger:{trigger:'#s-za-kogo',start:'top 80%',once:true},
+      opacity:0,y:40,duration:0.6,stagger:0.15,ease:'power2.out',
+      onStart:function(){gsap.set('#s-za-kogo .zk-card',{willChange:'transform'});},
+      onComplete:function(){gsap.set('#s-za-kogo .zk-card',{willChange:'auto'});}
+    });
+
+    /* Process – heading */
+    gsap.from('#s-protses .s-title',{
+      scrollTrigger:{trigger:'#s-protses .s-title',start:'top 85%',once:true},
+      opacity:0,y:30,duration:0.7,ease:'power2.out'
+    });
+    /* Process – steps (staggered left→right, 4 elements) */
+    gsap.from('#s-protses .proc-card',{
+      scrollTrigger:{trigger:'#s-protses .process-grid',start:'top 80%',once:true},
+      opacity:0,x:-20,duration:0.5,stagger:0.12,ease:'power2.out',
+      onStart:function(){gsap.set('#s-protses .proc-card',{willChange:'transform'});},
+      onComplete:function(){gsap.set('#s-protses .proc-card',{willChange:'auto'});}
+    });
+
+    /* Prices – heading */
+    gsap.from('#s-tseni .s-title',{
+      scrollTrigger:{trigger:'#s-tseni .s-title',start:'top 85%',once:true},
+      opacity:0,y:30,duration:0.7,ease:'power2.out'
+    });
+    /* Prices – rows (staggered right→center, 4 rows) */
+    gsap.from('#s-tseni table tr',{
+      scrollTrigger:{trigger:'#s-tseni table',start:'top 80%',once:true},
+      opacity:0,x:20,duration:0.5,stagger:0.08,ease:'power2.out',
+      onStart:function(){gsap.set('#s-tseni table tr',{willChange:'transform'});},
+      onComplete:function(){gsap.set('#s-tseni table tr',{willChange:'auto'});}
+    });
+
+    /* FAQ – heading */
+    gsap.from('#s-faq .s-title',{
+      scrollTrigger:{trigger:'#s-faq .s-title',start:'top 85%',once:true},
+      opacity:0,y:30,duration:0.7,ease:'power2.out'
+    });
+    /* FAQ – accordion items (staggered, max 8 = within 12-element limit) */
+    gsap.from('#s-faq .faq-details',{
+      scrollTrigger:{trigger:'#s-faq',start:'top 80%',once:true},
+      opacity:0,y:20,duration:0.45,stagger:0.07,ease:'power2.out',
+      onStart:function(){gsap.set('#s-faq .faq-details',{willChange:'transform'});},
+      onComplete:function(){gsap.set('#s-faq .faq-details',{willChange:'auto'});}
+    });
+
+    /* CTA – whole section scale-fade */
+    gsap.from('#s-cta',{
+      scrollTrigger:{trigger:'#s-cta',start:'top 80%',once:true},
+      opacity:0,scale:0.97,duration:0.7,ease:'power3.out',
+      onStart:function(){gsap.set('#s-cta',{willChange:'transform'});},
+      onComplete:function(){gsap.set('#s-cta',{willChange:'auto'});}
+    });
+  }
+  function loadST(cb){
+    if(window.ScrollTrigger){cb();return;}
+    var s=document.createElement('script');
+    s.src=base+'ScrollTrigger.min.js';
+    s.onload=cb;
+    document.head.appendChild(s);
+  }
+  if(!window.gsap){
+    var s=document.createElement('script');
+    s.src=base+'gsap.min.js';
+    s.onload=function(){loadST(run);};
+    document.head.appendChild(s);
+  } else {
+    loadST(run);
+  }
+})();
+</script>
 </body>
 </html>
