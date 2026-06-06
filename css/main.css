@@ -115,3 +115,9 @@
   .viber-fab__inner { padding: 13px; border-radius: 50%; }
   .viber-fab__pulse { border-radius: 50%; }
 }
+/* ── Phone Floating Action Button ── */
+.fab-phone{position:fixed;bottom:90px;right:28px;display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#EF4444,#DC2626);color:#ffffff;padding:14px 20px;border-radius:50px;text-decoration:none;font-family:var(--font-body);font-weight:600;font-size:.9rem;box-shadow:0 4px 24px rgba(239,68,68,0.4);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);z-index:9998;white-space:nowrap;}
+.fab-phone:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(239,68,68,0.55);background:linear-gradient(135deg,#F87171,#EF4444);}
+.fab-phone:active{transform:translateY(-1px);}
+@media(min-width:1024px){.fab-phone-label{display:none;}.fab-phone{padding:14px;border-radius:50%;}}
+@media(max-width:600px){.fab-phone{bottom:84px;right:16px;padding:14px;border-radius:50%;}.fab-phone .fab-phone-label{display:none;}}
