@@ -9,7 +9,7 @@ function closeLb(){const lb=document.getElementById('lightbox');if(!lb)return;lb
 function closeLbOuter(e){if(e.target===document.getElementById('lightbox'))closeLb()}
 const baWrap=document.getElementById('baWrap');const baAfter=document.getElementById('baAfter');const baDivider=document.getElementById('baDivider');const baHandle=document.getElementById('baHandle');let baDragging=false;function setBA(pct){pct=Math.max(5,Math.min(95,pct));baAfter.style.clipPath='inset(0 0 0 '+pct+'%)';baDivider.style.left=pct+'%';baHandle.style.left=pct+'%';}
 function getBA(e){const r=baWrap.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;return(x/r.width)*100;}
-if(baHandle&&baWrap){baHandle.addEventListener('mousedown',e=>{baDragging=true;e.preventDefault()});baHandle.addEventListener('touchstart',e=>{baDragging=true;e.stopPropagation()},{passive:true});window.addEventListener('mousemove',e=>{if(baDragging)setBA(getBA(e))});window.addEventListener('touchmove',e=>{if(baDragging)setBA(getBA(e))},{passive:true});window.addEventListener('mouseup',()=>baDragging=false);window.addEventListener('touchend',()=>baDragging=false);baWrap.addEventListener('click',e=>{if(!baDragging)setBA(getBA(e))});}const rvTrack=document.getElementById('rvTrack');const rvCards=rvTrack?rvTrack.querySelectorAll('.rv-card'):[];let rvIdx=0;function getVisible(){return window.innerWidth<=860?1:3}
+if(baHandle&&baWrap){baHandle.addEventListener('mousedown',e=>{baDragging=true;e.preventDefault()});baHandle.addEventListener('touchstart',e=>{baDragging=true;e.stopPropagation()},{passive:true});window.addEventListener('mousemove',e=>{if(baDragging)setBA(getBA(e))});window.addEventListener('touchmove',e=>{if(baDragging)setBA(getBA(e))},{passive:true});window.addEventListener('mouseup',()=>baDragging=false);window.addEventListener('touchend',()=>baDragging=false);baWrap.addEventListener('click',e=>{if(baDragging||e.target.closest('.ba-label'))return;setBA(getBA(e))});const bB=document.getElementById('baBtnBefore'),bA=document.getElementById('baBtnAfter');function baAnim(to){baAfter.style.transition='clip-path .5s ease';baDivider.style.transition=baHandle.style.transition='left .5s ease';setBA(to);setTimeout(()=>{baAfter.style.transition=baDivider.style.transition=baHandle.style.transition=''},550);}if(bB)bB.addEventListener('click',e=>{e.stopPropagation();baAnim(95)});if(bA)bA.addEventListener('click',e=>{e.stopPropagation();baAnim(5)});}const rvTrack=document.getElementById('rvTrack');const rvCards=rvTrack?rvTrack.querySelectorAll('.rv-card'):[];let rvIdx=0;function getVisible(){return window.innerWidth<=860?1:3}
 function slideRv(){if(!rvTrack||!rvCards.length)return;const v=getVisible(),max=Math.max(0,rvCards.length-v);rvIdx=Math.max(0,Math.min(rvIdx,max));const w=rvCards[0].offsetWidth+24;rvTrack.style.transform=`translateX(-${rvIdx*w}px)`;}
 document.getElementById('rvPrev')?.addEventListener('click',()=>{rvIdx--;slideRv()});document.getElementById('rvNext')?.addEventListener('click',()=>{rvIdx++;slideRv()});window.addEventListener('resize',slideRv);document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});if(!was){item.classList.add('open');btn.setAttribute('aria-expanded','true')}});});const _SB_URL='https://redcsbztdpsfysjcpral.supabase.co';
 const _SB_KEY='sb_publishable_VeJpNd4-0NmCTzHfdyM_-Q_fndUG-vX';
@@ -36,12 +36,36 @@ async function submitForm(){
   }
 }
 
-// Sidebar district highlight — no map dependency
+// Coverage map (Leaflet + OpenStreetMap tiles, lazy-loaded, no API key)
+var bgMap=null,bgMarkers={};
+var BG_ZONES=[[42.7330,23.3000,'Надежда'],[42.6990,23.2830,'Красна поляна'],[42.6820,23.2850,'Красно село'],[42.6770,23.2550,'Овча купел'],[42.6430,23.2650,'Витоша / Бояна'],[42.6720,23.3230,'Триадица / Лозенец'],[42.6960,23.3350,'Оборище / Средец'],[42.7100,23.3500,'Подуяне / Сердика'],[42.6800,23.3900,'Слатина / Дружба'],[42.6500,23.3800,'Младост / Горубляне'],[42.6000,23.4100,'Панчарево / Искър'],[42.7070,23.1450,'Банкя / Иваняне'],[42.7850,23.3800,'Нови Искър / Кремиковци']];
+function initBgMap(){
+  var el=document.getElementById('gmap');if(!el||bgMap||!window.L)return;
+  bgMap=L.map(el,{scrollWheelZoom:false,zoomControl:false,attributionControl:true,dragging:!L.Browser.mobile,tap:false}).setView([42.6977,23.3219],11);
+  L.control.zoom({position:'bottomright'}).addTo(bgMap);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,className:'bg-tiles',attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(bgMap);
+  L.circle([42.6977,23.3219],{radius:14500,color:'#0066ff',weight:1.5,fillColor:'#0066ff',fillOpacity:.07,dashArray:'6 6'}).addTo(bgMap);
+  BG_ZONES.forEach(function(z){
+    var m=L.circleMarker([z[0],z[1]],{radius:9,color:'#fff',weight:2,fillColor:'#0066ff',fillOpacity:1}).addTo(bgMap).bindPopup('<b>'+z[2]+'</b><br>Обслужваме района ✓<br><a href="tel:+359898562528">Обадете се</a>');
+    bgMarkers[z[2]]=m;
+  });
+}
+function loadBgMap(){
+  if(window.L){initBgMap();return;}
+  if(document.getElementById('leaflet-css'))return;
+  var c=document.createElement('link');c.id='leaflet-css';c.rel='stylesheet';c.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';c.integrity='sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';c.crossOrigin='';document.head.appendChild(c);
+  var s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';s.crossOrigin='';s.onload=initBgMap;document.head.appendChild(s);
+}
+(function(){var el=document.getElementById('gmap');if(!el)return;
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();loadBgMap();}},{rootMargin:'400px'});io.observe(el);}else loadBgMap();})();
 function flyTo(lat,lng,name,e){
   if(e){
     document.querySelectorAll('.zone-item').forEach(function(el){el.classList.remove('active');});
     e.currentTarget.classList.add('active');
   }
+  var g=document.getElementById('gmap');if(g&&window.innerWidth<=900){var r=g.getBoundingClientRect();if(r.bottom<80||r.top>window.innerHeight)g.scrollIntoView({behavior:'smooth',block:'center'});}
+  if(bgMap){bgMap.flyTo([lat,lng],13,{duration:1.2});var m=bgMarkers[name];if(m)setTimeout(function(){m.openPopup();},1250);}
+  else loadBgMap();
 }
 
 (function(){

@@ -165,7 +165,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="/css/main.css?v=5">
+<link rel="stylesheet" href="/css/main.css?v=6">
 </head>
 <body>
 <!-- Background -->
@@ -601,13 +601,14 @@
 <!-- ─── ПРЕДИ (bottom layer, always full) ─── -->
 <div class="ba-before">
 <img loading="lazy" decoding="async" src="bobi-37.jpeg" alt="Преди извозване" style="width:100%;height:100%;object-fit:cover;display:block;" loading="eager">
-<div class="ba-label before">ПРЕДИ</div>
 </div>
 <!-- ─── СЛЕД (top layer, clip-path reveals right side only) ─── -->
 <div class="ba-after" id="baAfter">
 <img loading="lazy" decoding="async" src="bobi-38.jpeg" alt="След извозване" style="width:100%;height:100%;object-fit:cover;display:block;" loading="eager">
-<div class="ba-label after">СЛЕД</div>
 </div>
+<!-- ─── Бутони (извън слоевете, за да не се скриват) ─── -->
+<button type="button" class="ba-label before" id="baBtnBefore" aria-label="Покажи снимката преди">ПРЕДИ</button>
+<button type="button" class="ba-label after" id="baBtnAfter" aria-label="Покажи снимката след">СЛЕД</button>
 <!-- ─── Divider + handle ─── -->
 <div class="ba-divider" id="baDivider" style="left:50%"></div>
 <div class="ba-handle" id="baHandle" style="left:50%;touch-action:none">
@@ -630,40 +631,26 @@
 <p class="s-desc">Bobi Group обслужва всички 24 района на Столична Община — от центъра до Банкя, от Нови Искър до Панчарево. Кликни на район за повече информация.</p>
 </div>
 <div class="zones-layout">
-<div class="map-outer district-grid-outer">
+<div class="map-outer">
 <div class="map-live"><div class="map-live-dot"></div>Активни в цяла Столична Община</div>
-<div class="district-grid">
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Надежда</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Красна поляна</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Красно село</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Овча купел</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Витоша / Бояна</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Триадица / Лозенец</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Оборище / Средец</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Подуяне / Сердика</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Слатина / Дружба</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Младост / Горубляне</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Панчарево / Искър</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Банкя / Иваняне</span></div>
-<div class="zone-item"><div class="zone-dot"></div><span class="zone-name">Нови Искър / Кремиковци</span></div>
-</div>
+<div id="gmap" role="region" aria-label="Карта на районите в София, които обслужваме"></div>
 </div>
 <div class="zones-side">
 <div class="side-title">24 РАЙОНА</div>
 <p class="side-sub">Покриваме цялата Столична Община</p>
-<div class="zone-item" onclick="flyTo(42.7153,23.3297,'Надежда',event)"><div class="zone-dot"></div><span class="zone-name">Надежда</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.7062,23.2743,'Красна поляна',event)"><div class="zone-dot"></div><span class="zone-name">Красна поляна</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6906,23.2904,'Красно село',event)"><div class="zone-dot"></div><span class="zone-name">Красно село</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6700,23.2930,'Овча купел',event)"><div class="zone-dot"></div><span class="zone-name">Овча купел</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6560,23.2790,'Витоша / Бояна',event)"><div class="zone-dot"></div><span class="zone-name">Витоша / Бояна</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6690,23.3190,'Триадица / Лозенец',event)"><div class="zone-dot"></div><span class="zone-name">Триадица / Лозенец</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.7010,23.3220,'Оборище / Средец',event)"><div class="zone-dot"></div><span class="zone-name">Оборище / Средец</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.7100,23.3600,'Подуяне / Сердика',event)"><div class="zone-dot"></div><span class="zone-name">Подуяне / Сердика</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6980,23.3900,'Слатина / Дружба',event)"><div class="zone-dot"></div><span class="zone-name">Слатина / Дружба</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6630,23.4000,'Младост / Горубляне',event)"><div class="zone-dot"></div><span class="zone-name">Младост / Горубляне</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.6380,23.4500,'Панчарево / Искър',event)"><div class="zone-dot"></div><span class="zone-name">Панчарево / Искър</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.7280,23.1800,'Банкя / Иваняне',event)"><div class="zone-dot"></div><span class="zone-name">Банкя / Иваняне</span><span class="zone-arr">→</span></div>
-<div class="zone-item" onclick="flyTo(42.7600,23.3400,'Нови Искър / Кремиковци',event)"><div class="zone-dot"></div><span class="zone-name">Нови Искър / Кремиковци</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.7330,23.3000,'Надежда',event)"><div class="zone-dot"></div><span class="zone-name">Надежда</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6990,23.2830,'Красна поляна',event)"><div class="zone-dot"></div><span class="zone-name">Красна поляна</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6820,23.2850,'Красно село',event)"><div class="zone-dot"></div><span class="zone-name">Красно село</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6770,23.2550,'Овча купел',event)"><div class="zone-dot"></div><span class="zone-name">Овча купел</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6430,23.2650,'Витоша / Бояна',event)"><div class="zone-dot"></div><span class="zone-name">Витоша / Бояна</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6720,23.3230,'Триадица / Лозенец',event)"><div class="zone-dot"></div><span class="zone-name">Триадица / Лозенец</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6960,23.3350,'Оборище / Средец',event)"><div class="zone-dot"></div><span class="zone-name">Оборище / Средец</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.7100,23.3500,'Подуяне / Сердика',event)"><div class="zone-dot"></div><span class="zone-name">Подуяне / Сердика</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6800,23.3900,'Слатина / Дружба',event)"><div class="zone-dot"></div><span class="zone-name">Слатина / Дружба</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6500,23.3800,'Младост / Горубляне',event)"><div class="zone-dot"></div><span class="zone-name">Младост / Горубляне</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.6000,23.4100,'Панчарево / Искър',event)"><div class="zone-dot"></div><span class="zone-name">Панчарево / Искър</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.7070,23.1450,'Банкя / Иваняне',event)"><div class="zone-dot"></div><span class="zone-name">Банкя / Иваняне</span><span class="zone-arr">→</span></div>
+<div class="zone-item" onclick="flyTo(42.7850,23.3800,'Нови Искър / Кремиковци',event)"><div class="zone-dot"></div><span class="zone-name">Нови Искър / Кремиковци</span><span class="zone-arr">→</span></div>
 </div>
 </div>
 <div class="zones-stats">
@@ -784,7 +771,7 @@
 </div>
 </footer>
 <script src="/js/nav-loader.js?v=5" defer></script>
-<script src="/js/main.js?v=5" defer></script>
+<script src="/js/main.js?v=6" defer></script>
 <!-- Viber Floating Button -->
 <!-- Phone FAB -->
 <a href="tel:+359898562528" class="fab-phone" aria-label="Обади се">
