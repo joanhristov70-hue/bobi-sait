@@ -53,8 +53,8 @@ function initBgMap(){
 function loadBgMap(){
   if(window.L){initBgMap();return;}
   if(document.getElementById('leaflet-css'))return;
-  var c=document.createElement('link');c.id='leaflet-css';c.rel='stylesheet';c.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';c.integrity='sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';c.crossOrigin='';document.head.appendChild(c);
-  var s=document.createElement('script');s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';s.integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';s.crossOrigin='';s.onload=initBgMap;document.head.appendChild(s);
+  var c=document.createElement('link');c.id='leaflet-css';c.rel='stylesheet';c.href='/vendor/leaflet/leaflet.css';document.head.appendChild(c);
+  var s=document.createElement('script');s.src='/vendor/leaflet/leaflet.js';s.onload=initBgMap;document.head.appendChild(s);
 }
 (function(){var el=document.getElementById('gmap');if(!el)return;
   if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();loadBgMap();}},{rootMargin:'400px'});io.observe(el);}else loadBgMap();})();

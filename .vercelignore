@@ -1,0 +1,18 @@
+# Не се публикуват на живия сайт (остават в GitHub)
+*.zip
+bobi-group*.html
+files/
+files сео опс/
+before.jpg
+after.jpg
+*_n.jpg
+*_n.png
+извозване*.jpg
+къртене*.jpg
+почистване.jpg
+преместване.jpg
+работник.jpg
+след преместване.jpg
+хамали.jpg
+bobi-18.jpeg
+bobi-20.jpeg
