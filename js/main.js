@@ -11,9 +11,7 @@ const baWrap=document.getElementById('baWrap');const baAfter=document.getElement
 function getBA(e){const r=baWrap.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;return(x/r.width)*100;}
 if(baHandle&&baWrap){baHandle.addEventListener('mousedown',e=>{baDragging=true;e.preventDefault()});baHandle.addEventListener('touchstart',e=>{baDragging=true;e.stopPropagation()},{passive:true});window.addEventListener('mousemove',e=>{if(baDragging)setBA(getBA(e))});window.addEventListener('touchmove',e=>{if(baDragging)setBA(getBA(e))},{passive:true});window.addEventListener('mouseup',()=>baDragging=false);window.addEventListener('touchend',()=>baDragging=false);baWrap.addEventListener('click',e=>{if(baDragging||e.target.closest('.ba-label'))return;setBA(getBA(e))});const bB=document.getElementById('baBtnBefore'),bA=document.getElementById('baBtnAfter');function baAnim(to){baAfter.style.transition='clip-path .5s ease';baDivider.style.transition=baHandle.style.transition='left .5s ease';setBA(to);setTimeout(()=>{baAfter.style.transition=baDivider.style.transition=baHandle.style.transition=''},550);}if(bB)bB.addEventListener('click',e=>{e.stopPropagation();baAnim(95)});if(bA)bA.addEventListener('click',e=>{e.stopPropagation();baAnim(5)});}const rvTrack=document.getElementById('rvTrack');const rvCards=rvTrack?rvTrack.querySelectorAll('.rv-card'):[];let rvIdx=0;function getVisible(){return window.innerWidth<=860?1:3}
 function slideRv(){if(!rvTrack||!rvCards.length)return;const v=getVisible(),max=Math.max(0,rvCards.length-v);rvIdx=Math.max(0,Math.min(rvIdx,max));const w=rvCards[0].offsetWidth+24;rvTrack.style.transform=`translateX(-${rvIdx*w}px)`;}
-document.getElementById('rvPrev')?.addEventListener('click',()=>{rvIdx--;slideRv()});document.getElementById('rvNext')?.addEventListener('click',()=>{rvIdx++;slideRv()});window.addEventListener('resize',slideRv);document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});if(!was){item.classList.add('open');btn.setAttribute('aria-expanded','true')}});});const _SB_URL='https://redcsbztdpsfysjcpral.supabase.co';
-const _SB_KEY='sb_publishable_VeJpNd4-0NmCTzHfdyM_-Q_fndUG-vX';
-async function submitForm(){
+document.getElementById('rvPrev')?.addEventListener('click',()=>{rvIdx--;slideRv()});document.getElementById('rvNext')?.addEventListener('click',()=>{rvIdx++;slideRv()});window.addEventListener('resize',slideRv);document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});if(!was){item.classList.add('open');btn.setAttribute('aria-expanded','true')}});});async function submitForm(){
   const n=document.getElementById('f-name').value.trim();
   const p=document.getElementById('f-phone').value.trim();
   const s=document.getElementById('f-svc').value;
@@ -22,17 +20,18 @@ async function submitForm(){
   const btn=document.querySelector('.f-submit');
   btn.disabled=true;btn.textContent='Изпращане...';btn.style.opacity='.7';btn.style.animation='none';
   try{
-    const res=await fetch(_SB_URL+'/rest/v1/contact_submissions',{
+    const hp=document.getElementById('f-web');
+    const res=await fetch('/api/lead',{
       method:'POST',
-      headers:{'Content-Type':'application/json','apikey':_SB_KEY,'Authorization':'Bearer '+_SB_KEY,'Prefer':'return=minimal'},
-      body:JSON.stringify({name:n,phone:p,service:s,message:m})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,phone:p,service:s,message:m,website:hp?hp.value:''})
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
     btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Изпратено успешно!';
     btn.style.background='#00C48C';btn.style.opacity='1';btn.style.boxShadow='0 0 24px rgba(0,196,140,.5)';
   }catch(e){
     btn.disabled=false;btn.textContent='Изпрати Запитване';btn.style.opacity='1';btn.style.animation='';
-    alert('Грешка при изпращане. Моля, опитайте отново или ни се обадете.');
+    alert('Заявката не успя да се изпрати. Моля, обадете ни се директно на +359 898 562 528.');
   }
 }
 
