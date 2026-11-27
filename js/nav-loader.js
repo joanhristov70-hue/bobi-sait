@@ -9,7 +9,7 @@
     '<header class="header" id="hdr">',
     '<div class="hdr-inner">',
     '<a href="/" class="logo" aria-label="Bobi Group Sofia">',
-    '<div class="logo-img-wrap"><img fetchpriority="high" src="/bobi-01.png" alt="Bobi Group Logo" class="logo-img"></div>',
+    '<div class="logo-img-wrap"><picture><source srcset="/bobi-01-88.webp" type="image/webp"><img fetchpriority="high" src="/bobi-01.png" alt="Bobi Group Logo" class="logo-img" width="44" height="44"></picture></div>',
     '<span class="logo-name">BOBI <em>GROUP</em></span>',
     '</a>',
     '<nav class="nav" aria-label="Основна навигация">',
